@@ -1,0 +1,462 @@
+%btn{
+    font-size: 1.389vw; /*20px*/
+    font-weight: bold;
+    color: white;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+}
+
+.bodydesactive{
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;    
+    width: 100%;
+    height: auto;
+    &.peuVisible{
+        opacity: 0.5;
+    }
+}
+
+.contact_button {
+    @extend %btn;
+    cursor: pointer;
+    justify-self: center;
+    &:hover, &:focus{
+        color: black;
+        background: #DB8876;
+    }
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-column-gap: 2%;
+    align-items: center;
+    padding: 0px 50px;
+    .nomPhotograph{
+        font-size: 2.5vw; /*36px*/
+        line-height: 60px;
+        text-align: left;
+    }
+    .adrPhotograph{
+        font-size: 1.667vw; /*24px*/
+        line-height: 40px;
+        text-align: left;
+        color: #901C1C;
+    } 
+    .slogan{
+        font-size: 1.25vw; /*18px*/
+        line-height: 40px;
+        text-align: left;
+        color: #525252;
+    }
+    .photoPhotograph{
+        justify-self: right;
+    }
+}
+
+.triSection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    height: 70px;
+    width: 100%;
+    .tri{
+        font-size: 1.25vw; /*18px*/
+        font-weight: 700;
+        line-height: 23px;
+        align-self: baseline;
+        padding-top: 10px;
+        box-sizing: border-box
+    }
+    .listeTri {
+        @extend %btn;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        z-index: 1;
+        list-style-type: none;
+        line-height: 60px;
+        padding: 0 20px;
+        position: absolute;
+        top: 0px;
+        left: 100px;
+        li{
+            width: 100%;
+            height: 69px;
+            hr {
+                width: 150px;
+                position: relative;
+                left: -10px;
+            }
+        }
+        li:not(:first-child){
+            display: none;
+        }
+        li:first-child{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.mediaSection{
+    display: grid;    
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 15px;
+    grid-column-gap: 7.5%;
+    
+    article{
+        width: 100%;
+        height: 351px;
+        
+        img, video{
+            width: 100%;
+            min-width: 250px;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        div{
+            font-size: 0.833vw; /*12px*/
+            font-weight: 400;
+            line-height: 31px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #901C1C;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
+
+.contact_modal {
+    display: none;
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    width: 669px;
+    align-self: center;
+    z-index: 1;
+    overflow: auto;
+    .modal{
+        gap: 30px;
+        border-radius: 5px;
+        background-color: #DB8876;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 35px;
+        header {
+            justify-content: space-between;
+            width: 100%;
+            height: auto;
+            img {
+                cursor: pointer;
+            }
+        }
+        header h2, .nomPhotographCtc{
+            font-size: 4.444vw; /*64px*/
+            font-weight: normal;
+            align-self: self-start;
+        }
+        p{
+            font-size: 2.083vw; /*30px*/
+            padding: 30px 0px;
+            line-height: 60px;
+            text-align: center;
+        }
+    }
+    form {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        label {
+            color: #312E2E;
+            font-size: 2.5vw; /*36px*/
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: self-start;
+        }
+        input, textarea{
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        input{
+            height: 68px;
+        }
+        button{
+            position: relative;
+            top: 23px;
+            font-size: 1.25vw; /*18px*/
+        }
+    } 
+    form, form div{
+        gap: 20px;
+    }
+}
+
+.total{
+    width: 376px;
+    height: 89px;
+    position: fixed;
+    right: 30px;
+    bottom: 13px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background: #DB8876;
+    z-index: 1;
+    p{
+        font-size: 1.667vw; /*24px*/
+    }
+}
+
+.lightBox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1;    
+    padding: 40px 100px;
+    align-items: center;
+    .maGrid{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-areas: "v i x"
+                             "p i s"
+                             "h h h";
+        grid-template-rows: 46% 46% 8%;
+        grid-template-columns: 49px calc(100% - 98px) 49px;
+        .fa-solid{
+            font-size: 2.917vw; /*42px*/ 
+            text-align: center;
+            &.fermerLightBox {
+                background: #901C1C;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-stroke: transparent;
+                grid-area: x;
+            }
+            &.precedent{
+                grid-area: p;
+            }
+            &.suivant{
+                grid-area: s;
+            }
+            &.active{
+                background: #901C1C;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-stroke: transparent;
+                cursor: pointer;
+            }
+            &.desactive{
+                cursor: default;
+                background: grey;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-stroke: transparent;
+            }
+        }
+        .lightBoxContent {
+            width: 100%;
+            height: 100%;
+            text-align-last: center;
+            grid-area: i;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img, video{
+                width: auto;
+                max-width: 100%;
+                height: 100%;
+            }
+        }
+        h2{
+            margin:10px 96px 0px 96px;
+            font-size: 1.667vw; /*24px*/
+            color: #901C1C;
+            grid-area: h;
+        }
+    }
+}
+
+article .liked, .lightBox .active{
+    cursor: pointer;
+}
+
+@media (max-width: 1024px){
+    .mediaSection{   
+        grid-template-columns: 1fr 1fr;
+    }
+    .photograph-header{
+        grid-template-areas: "i p"
+                             "i b";
+        grid-template-columns: 2fr 1fr;
+        div:first-child{
+            grid-area: i;
+        }
+        .photoPhotograph{
+            grid-area: p;
+        }
+        .contact_button{
+            grid-area: b;
+            justify-self: flex-end;
+        }
+        .nomPhotograph{
+            font-size: 3.516vw; /*36px*/
+        }
+        .adrPhotograph{
+            font-size: 2.344vw; /*24px*/
+        } 
+        .slogan{
+            font-size: 1.758vw; /*18px*/
+        }
+    }
+    %btn{
+        font-size: 1.953vw; /*20px*/
+    }
+    .contact_button, .triSection .listeTri li{
+        height: 60px;
+    }
+    .triSection{
+        .tri{
+            font-size: 1.758vw; /*18px*/
+        }
+        .listeTri{
+            background-color: #901C1C;
+        }
+    }
+    .mediaSection article div{
+        font-size: 1.172vw; /*12px*/
+    }
+    .modal{
+        header h2, .nomPhotographCtc{
+            font-size: 4.444vw; /*64px*/
+        }
+        p{
+            font-size: 2.93vw; /*30px*/
+        }
+    }
+    .contact_button form {
+        label {
+            font-size: 3.516vw; /*36px*/
+        }
+        button{
+            font-size: 1.758vw; /*18px*/
+        }
+    } 
+    .lightBox {
+        .maGrid{
+            .fa-solid{
+                font-size: 4.102vw; /*42px*/ 
+            }
+            h2{
+                font-size: 2.344vw; /*24px*/
+            }
+        }
+    }
+    .total{
+        height: 59px;
+        width: 300px;
+        p{
+            font-size: 2.344vw; /*24px*/
+        }
+    }
+}
+
+@media (max-width: 767.98px){
+    .contact_modal{
+        width: 100%;
+    }
+    .lightBox{
+        padding: 20px;
+    }
+    .photograph-header{
+        .nomPhotograph{
+            font-size: 4.688vw; /*36px*/
+        }
+        .adrPhotograph{
+            font-size: 3.125vw; /*24px*/
+        } 
+        .slogan{
+            font-size: 2.344vw; /*18px*/
+        }
+    }
+    %btn{
+        font-size: 2.604vw; /*20px*/
+    }
+    .triSection{
+        .tri{
+            font-size: 2.344vw; /*18px*/
+        }
+    }
+    .mediaSection article div{
+        font-size: 1.563vw; /*12px*/
+    }
+    .modal{
+        header h2, .nomPhotographCtc{
+            font-size: 8.333vw; /*64px*/
+        }
+        p{
+            font-size: 3.906vw; /*30px*/
+        }
+    }
+    .contact_modal form {
+        label {
+            font-size: 4.688vw; /*36px*/
+        }
+        button{
+            font-size: 2.344vw; /*18px*/
+        }
+    } 
+    .lightBox {
+        .maGrid{
+            .fa-solid{
+                font-size: 5.469vw; /*42px*/ 
+            }
+            h2{
+                font-size: 3.125vw; /*24px*/
+            }
+        }
+    }
+    .total p{
+        font-size: 3.125vw; /*24px*/
+    }
+}
+@media (max-width: 500px){
+    .mediaSection{ 
+        grid-template-columns: 1fr;
+    }
+}

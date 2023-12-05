@@ -1,0 +1,174 @@
+body {
+    font-family: "DM Sans", sans-serif;
+    padding: 42px 100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1440px;
+    width: 100%;
+    box-sizing: border-box;
+    *{
+        margin: 0;
+        box-sizing: border-box;
+    }
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    h1 {
+        font-size: 2.5vw; /*36px*/
+        line-height: 47px;
+        text-align: left;
+        color: #901C1C;
+    }
+    .logo {
+        height: 50px;
+        width: 200px;
+    }
+}
+
+.photographer_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    padding-bottom: 50px;
+    article {
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        .articleLien {
+            text-decoration: none;
+            cursor: pointer;
+            &:hover, &:focus{
+                .photoPhotograph{
+                    box-shadow: 0px 4px 12px 0px #00000040;
+                }
+            }
+        }
+    }
+}
+
+.nomPhotograph{
+    color: #D3573C; 
+    font-size: 1.944vw; /*28px*/
+    line-height: 47px;
+    text-align: center;
+}
+
+.adrPhotograph{
+    color: #901C1C;
+    font-size: 0.903vw; /*13px*/
+    text-align: center;
+    line-height: 20px;
+}
+
+.slogan {
+    color: black;
+    font-size: 0.694vw; /*10px*/
+    line-height: 20px;
+    text-align: center;
+}
+
+.prix {
+    color: #757575;
+    font-size: 0.625vw; /*9px*/
+    line-height: 20px;
+    text-align: center;
+}
+
+.photoPhotograph{
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    border: 2px solid rgb(88 199 147);
+    transition: all 0.2s ;
+} 
+
+@media (max-width: 1024px){
+    body{
+        padding: 21px 50px;
+    }
+    header h1 {
+        font-size: 3.516vw;
+    }
+    .nomPhotograph{
+        font-size: 2.734vw; /*28px*/
+    }
+    
+    .adrPhotograph{
+        font-size: 1.27vw; /*13px*/
+    }
+    
+    .slogan {
+        font-size: 0.977vw; /*10px*/
+    }
+    
+    .prix {
+        font-size: 0.879vw; /*9px*/
+    }
+    
+    .photographer_section{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767.98px){
+    body{
+        padding: 10px 30px;
+    }
+    header:not(.modal header){
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+        h1 {
+            font-size: 4.688vw;
+        }
+    }
+    .nomPhotograph{
+        font-size: 3.646vw; /*28px*/
+    }
+    
+    .adrPhotograph{
+        font-size: 1.693vw; /*13px*/
+    }
+    
+    .slogan {
+        font-size: 1.302vw; /*10px*/
+    }
+    
+    .prix {
+        font-size: 1.172vw; /*9px*/
+    }
+    
+    .photographer_section{
+        gap: 5%;
+    }
+}
+
+@media (max-width: 500px){
+    .photographer_section{
+        grid-template-columns: 1fr;
+    }    
+    header h1 {
+        font-size: 7.214vw;
+    }
+    .nomPhotograph{
+        font-size: 5.611vw; /*28px*/
+    }    
+    .adrPhotograph{
+        font-size: 2.605vw; /*13px*/
+    }    
+    .slogan {
+        font-size: 2.004vw; /*10px*/
+    }
+    .prix {
+        font-size: 1.804vw; /*9px*/
+    }
+}
