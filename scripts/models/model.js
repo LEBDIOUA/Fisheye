@@ -27,7 +27,7 @@ class Model{
     }
 
     getData(){
-        this.data = this.get("../data/photographers.json");
+        this.data = this.get("/Fisheye/data/photographers.json");
         return this.data;
     }
 
