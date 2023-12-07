@@ -27,7 +27,7 @@ class Model{
     }
 
     getData(){
-        url = "../data/photographers.json";
+        const url = "../data/photographers.json";
         if(this.verifierLien(url)){
             this.data = this.get(url);
         }
