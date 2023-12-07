@@ -1,10 +1,10 @@
 import Controller from "../controller/controller.js";
-class ListeMediasView{
+class ListeMediasView{  
     constructor(photograph, medias){
         this.nbMedias = 0;
         this.photograph = photograph;
         this.listeMedias = medias;
-        this.controller = new Controller();
+        //this.controller = new Controller();
     }
     
     afficherMedia(position){
@@ -21,32 +21,50 @@ class ListeMediasView{
         return content;
     }
 
-    static modifierListe(liste){
-        console.log(this.listeMedias)
-        console.log(liste)
-        this.listeMedias = liste;
-        this.render(false, -1); 
-    }
     async render(){  
         this.nbMedias=0;
 
         //Supprimer la section dont la classe .mediaSection s'il existe
-        const main = document.querySelector("main"); 
-        const mediaSection = main.querySelector(".mediaSection");
-        if (mediaSection) {
-            main.removeChild(mediaSection);
+        const main = document.querySelector("main");
+        //this.ecouterClicsMedias(main);  
+
+        const oldMediaSection = main.querySelector(".mediaSection");
+        if (oldMediaSection) {
+            main.removeChild(oldMediaSection);
         }
 
         //Creer une section et la remplir avec les medias
-        const mediasSection = document.createElement("section");
-        mediasSection.setAttribute("class", "mediaSection");
+        const newMediaSection = document.createElement("section");
+        newMediaSection.setAttribute("class", "mediaSection");
         for (let i=0; i<this.listeMedias.length; i++){
-            mediasSection.innerHTML += this.afficherMedia(i);
+            newMediaSection.innerHTML += this.afficherMedia(i);
         }
-        main.appendChild(mediasSection);
+        main.appendChild(newMediaSection);
 
         this.aimerMedia(main);
-        this.afficherLightBox();
+        this.ecouterClicsMedias(); 
+    }
+    // ecouterClicsMedias(container) {
+    //     container.addEventListener('click', (event) => {
+    //         if (event.target.classList.contains('media')) {
+    //             const mediaElements = container.querySelectorAll('.media');
+    //             const index = Array.from(mediaElements).indexOf(event.target);
+    //             console.log(index);
+    //             event.stopPropagation();
+    //         }
+    //     });
+    // }
+    
+    ecouterClicsMedias(){
+        const medias = document.querySelectorAll(".media");
+        medias.forEach((media, index) => {
+            media.addEventListener("click", (event)=>{
+                if (this.listeMedias[index].isVideo){
+                    event.preventDefault();
+                }
+                Controller.afficherModalLightBox(".lightBox", null, ".fermerLightBox", this.photograph, this.listeMedias, index);
+            })
+        });
     }
 
     afficherTotal(main){
@@ -85,18 +103,6 @@ class ListeMediasView{
     initialiserBtnLikes(i){
         const btnLike = document.querySelectorAll(".btnLike");
         btnLike[i].classList.add("liked");
-    }
-
-    afficherLightBox(){
-        const medias = document.querySelectorAll(".media");
-        for (let i=0; i<medias.length; i++){
-            medias[i].addEventListener("click", (event) =>{
-                if (this.listeMedias[i].isVideo){
-                    //event.preventDefault();
-                }
-                this.controller.afficherModalLightBox(".lightBox", null, ".fermerLightBox", this.photograph, this.listeMedias, i);
-            });
-        }
     }
 }
 

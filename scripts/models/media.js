@@ -6,7 +6,6 @@ class Media{
         this.likes = data.likes;
         this.date = data.date;
         this.price = data.price;
-        this.isVideo;
 
         if("image" in data){
             this.content = data.image;
@@ -51,15 +50,15 @@ class Media{
     }
 
     getMediaFactory(photograph){
-        let content = "";
+        let code = "";
         if(this.isVideo === false){
-            content += `<img src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" alt="${this.getTitre}" class="media"/>`;
+            code += `<img src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" alt="${this.getTitre}" class="media"/>`;
         }
 
         else if(this.isVideo === true){
-            content += `<video controls class="media"> <source src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" type="video/mp4"> </video>`;
+            code += `<video controls class="media"> <source src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" type="video/mp4"> </video>`;
         }
-        return content;
+        return code;
     }
 }
 export default Media;

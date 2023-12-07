@@ -32,31 +32,46 @@ class Controller{
 
     async afficherListeMedias(photographId, filtre){
         let medias;
-        switch (filtre){
-            case "afficherListeMediasByTitre":
-                medias = await this.model.getMediasByTitle(photographId);
-                break;
-            case "afficherListeMediasByLikes":
-                medias = await this.model.getMediasByLikes(photographId);
-                break;
-            case "afficherListeMediasByDate":
-                medias = await this.model.getMediasByDate(photographId);
-                break;
-            default:
-                medias = await this.model.getMedias(photographId);
-                break;
+        if (typeof this.model[filtre] === 'function') {
+            medias = await this.model[filtre](photographId);
+        } 
+        else {
+            console.error(`La méthode ${filtre} n'est pas une fonction dans le modèle.`);
         }
+
         let photograph = await this.model.getPhotographById(photographId);
         let listeMediasView = new ListeMediasView(photograph, medias);
-        listeMediasView.render(false, -1); 
+        listeMediasView.render(); 
     }
     
     chargerListeTri(id){
         let listeTri = new TriView();
-        listeTri.chargerListeTri();
-        const liste = document.querySelector(".listeTri");
-        liste.addEventListener("click", () => {
-            this.afficherListeMedias(id, listeTri.choisirTri());
+        listeTri.construireListeTri();
+        const maliste = document.querySelector(".listeTri"); 
+        const liElements = document.querySelectorAll(".listeTri li"); 
+
+        maliste.addEventListener("click", () => {
+            listeTri.cacherAfficherListeTri();
+        }); 
+        for(let i=1; i<liElements.length; i++){
+            liElements[i].addEventListener("click", () =>{
+                this.afficherListeMedias(id, listeTri.genererFonction(liElements[i]));
+                listeTri.choisirTri(i);
+            }); 
+        }
+        addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") {
+                event.preventDefault();
+                listeTri.choisirTri(null, "up");
+            }
+            else if (event.key === "ArrowDown") {
+                event.preventDefault();
+                listeTri.choisirTri(null, "down");
+            }
+            else if (event.key === "Enter") {
+                event.preventDefault();
+                this.afficherListeMedias(id, listeTri.genererFonction(null));
+            }
         }); 
     }
 
@@ -65,8 +80,7 @@ class Controller{
         monModal.chargerModal();
     }
 
-    async afficherModalLightBox(modal, btnOuvrir, btnFermer, photograph, medias, position){
-        ModalLightBox.construireLightBox()
+    static async afficherModalLightBox(modal, btnOuvrir, btnFermer, photograph, medias, position){
         const monModal = new ModalLightBox(modal, btnOuvrir, btnFermer, photograph, medias, position);
         monModal.afficherLightBox();
     }

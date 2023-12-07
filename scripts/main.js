@@ -1,6 +1,6 @@
 const currentPath = window.location.pathname;
 
-if(currentPath === "/"){
+if(currentPath === "/Fisheye/" || currentPath === "/"){
     import("./mainIndex.js").then((mainIndex) => {
         mainIndex.default;
     }).catch((error) => {
@@ -8,7 +8,7 @@ if(currentPath === "/"){
     });
 }
 
-else if(currentPath === "/pages/photographer.html"){
+else if(currentPath === "/Fisheye/pages/photographer.html" || currentPath === "/pages/photographer.html"){
     import("./mainPhotographer.js").then((mainPhotograph) => {
         mainPhotograph.default;
     }).catch((error) => {

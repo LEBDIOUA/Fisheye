@@ -3,14 +3,21 @@ import Modal from "./modal.js"
 class ModalLightBox extends Modal{
 
     constructor(lightBox, btnOuvrir, btnFermer, photograph, listeMedias, position){
+        ModalLightBox.construireLightBox();
         super(lightBox, btnOuvrir, btnFermer);
         this.photograph = photograph;
         this.listeMedias = listeMedias;
-        this.main = document.querySelector("main");
-        this.lightBoxContent = document.querySelector('.lightBoxContent');
-        this.position = position;        
+        this.position = position;   
+        this.main = document.querySelector("main"); 
         this.precedent = document.querySelector('.precedent');
         this.suivant = document.querySelector('.suivant');
+
+        // this.listeMedias.forEach((element, index)=> {
+        //     console.log(element, media)
+        //     if(element === media){
+        //         this.position = index;
+        //     }
+        // });
     }
 
     static construireLightBox(){
@@ -38,7 +45,7 @@ class ModalLightBox extends Modal{
 
     afficherLightBox(){
         //charger lightBox
-        this.chargerLigthBox(this.position);         
+        this.chargerLigthBox();         
         this.ouvrirModal();
 
         if(this.position == 0){
@@ -80,11 +87,14 @@ class ModalLightBox extends Modal{
     }
 
     chargerLigthBox(){
-        if(this.position >= 0){
-            const titre = this.modal.querySelector('h2');
-            this.lightBoxContent.innerHTML = this.listeMedias[this.position].getMediaFactory(this.photograph);
-            titre.textContent = this.listeMedias[this.position].getTitre;
-        }
+        const lightBoxContent = document.querySelector('.lightBoxContent');   
+        const titre = this.modal.querySelector('h2');
+        
+        console.log(this.listeMedias[this.position])
+        console.log(lightBoxContent);
+
+        titre.textContent = this.listeMedias[this.position].getTitre;
+        lightBoxContent.innerHTML = this.listeMedias[this.position].getMediaFactory(this.photograph);
     }
 
     mediaPrecedent(){

@@ -10,9 +10,10 @@ controller.afficherPhotograph(urlParams.get("id"));
 
 //afficher Liste de tri
 controller.chargerListeTri(urlParams.get("id"));
+// controller.appliquerTri();
 
 //afficher la liste des medias
-controller.afficherListeMedias(urlParams.get("id"));
+controller.afficherListeMedias(urlParams.get("id"), "getMedias");
 
 //Chargement du modal contact
 controller.afficherModalContact(".contact_modal", ".modal", ".ouvrirModal", ".fermerModal", urlParams.get("id"));

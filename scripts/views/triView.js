@@ -1,33 +1,56 @@
 class TriView{
-    chargerListeTri(){
+    constructor(){
+        this.position = 0;
+    } 
+    construireListeTri(){
         const main = document.querySelector("main");
         let content = `
         <section class="triSection">
             <p class="tri">Trier par : </p>
             <ul class = "listeTri">
-                <li id="element1"><p id="val">Popularité</p> <i class="fa-solid fa-chevron-down iconTri"></i></li>
-                <li id="element2"><hr/>Date</li>
-                <li id="element3"><hr/>Titre</li>
+                <li id="element1" name="popularite"><p id="val">Popularité</p><i class="fa-solid fa-chevron-down iconTri"></i></li>
+                <li id="element2" name="date"><hr/>Date</li>
+                <li id="element3" name="titre"><hr/>Titre</li>
             </ul>
         </section>`
         main.innerHTML += content;
     }
 
-    cacherAfficherListeTri(){;
+    genererFonction(element){
+        if(element === null){
+            const liElements = document.querySelectorAll(".listeTri li");             
+            element = liElements[0];
+        }
+        let fonction;
+        switch (element.textContent){
+            case "Titre":
+                fonction = "getMediasByTitle";
+                break;
+            case "Popularité":
+                fonction = "getMediasByLikes";
+                break;
+            case "Date":
+                fonction = "getMediasByDate";
+                break;
+        }
+        return fonction;
+    }
+
+    cacherAfficherListeTri(){
         const liElements = document.querySelectorAll(".listeTri li");        
         const icon = document.querySelector('.iconTri');
         liElements.forEach((element, index) => {
-            //Tester si mes éléments de la liste sans cacher ou non aprés chaque clic
-            if (window.getComputedStyle(element).getPropertyValue('display') == "none" && (index === 1 || index ===2)){
+            //Tester si mes éléments de la liste sans cacher ou non aprés chaque clic index === 1 || index ===2
+            if (window.getComputedStyle(element).getPropertyValue('display') == "none" && (index > 0)){
                 element.style.display = "block";
-                if(index === 1 || index === 2){
+                if(index > 0){
                     //Changer l'icone
                     icon.classList.remove("fa-chevron-down"); 
                     icon.classList.add("fa-chevron-up");
                 }
             }
-            else if (window.getComputedStyle(element).getPropertyValue('display') == "block" && (index === 1 || index ===2)){
-                if(index == 1 || index === 2){
+            else if (window.getComputedStyle(element).getPropertyValue('display') == "block" && (index >0 )){
+                if(index > 0){
                     element.style.display = "none";
                     //Changer l'icone
                     icon.classList.remove("fa-chevron-up");
@@ -36,41 +59,44 @@ class TriView{
             }  
         });
     }
-    
+
     //Changer le premier Texte de la liste
-    choisirTri(){
-        this.cacherAfficherListeTri();
+    choisirTri(index, direction){
         const liElements = document.querySelectorAll(".listeTri li");      
         const element1 = document.querySelector("#val");
-        const icon = document.querySelector('.iconTri');
-        liElements.forEach((element, index) => {
-            element.addEventListener("click", function() {
-                if(index !== 0){
-                    let temp = element.textContent;
-                    element.innerHTML = "<hr/>" + element1.textContent;
-                    element1.textContent = temp;
-                    //this.genererFonction;
+        
+        if(index > 0 && index != null){
+            let temp = liElements[index].textContent;
+            for(let i=index; i>0; i--){
+                if(i > 1){
+                    liElements[i].innerHTML = "<hr/>" + liElements[i-1].textContent;
                 }
-            });
-        });
-        return this.genererFonction();
-    }
-
-    genererFonction(){
-        const valeur = document.querySelector("#val").textContent;
-        let fonction = "afficherListeMediasBy";
-        switch (valeur){
-            case "Titre":
-                fonction += "Titre";
-                break;
-            case "Popularité":
-                fonction += "Likes";
-                break;
-            case "Date":
-                fonction += "Date";
-                break;
+                else if(i === 1){
+                    liElements[i].innerHTML = "<hr/>" + element1.textContent;
+                }
+            }
+            element1.textContent = temp;
         }
-        return fonction;
+        else if(index === null){
+            if(direction === "up"){
+                if(this.position > 0){
+                    this.position -= 1;
+                }
+                else if(this.position === 0){
+                    this.position = liElements.length-1;
+                }
+            }
+            if(direction === "down"){
+                if(this.position < liElements.length-1){
+                    this.position += 1;
+                }
+                else if(this.position === liElements.length-1){
+                    this.position = 0;
+                }
+            }
+            //console.log(this.position)
+            this.choisirTri(this.position);
+        }
     }
 }
 export default TriView;
