@@ -1,5 +1,5 @@
 const currentPath = window.location.pathname;
-
+console.log(currentPath);
 if(currentPath === "/Fisheye/" || currentPath === "/"){
     import("./mainIndex.js").then((mainIndex) => {
         mainIndex.default;
