@@ -26,23 +26,25 @@ class Model{
             })
     }
 
-    getData(){
+    async getData() {
         const url = "../data/photographers.json";
-        if(this.verifierLien(url)){
-            this.data = this.get(url);
+        const linkExists = await this.verifierLien(url);
+        
+        if (linkExists) {
+            this.data = await this.get(url);
+        } else {
+            this.data = await this.get("/Fisheye/data/photographers.json");
         }
-        else{
-            this.data = this.get("/Fisheye/data/photographers.json");
-        }
+        
         return this.data;
     }
-
+    
     async verifierLien(url) {
-        const response = await fetch(url);
-        if (response.ok) {
-            return true;
-        } 
-        else {
+        try {
+            const response = await fetch(url);
+            return response.ok;
+        } catch (error) {
+            console.error("Erreur lors de la vérification du lien :", error);
             return false;
         }
     }
