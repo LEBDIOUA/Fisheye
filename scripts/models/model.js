@@ -27,8 +27,24 @@ class Model{
     }
 
     getData(){
-        this.data = this.get("../data/photographers.json");
+        url = "../data/photographers.json";
+        if(this.verifierLien(url)){
+            this.data = this.get(url);
+        }
+        else{
+            this.data = this.get("/Fisheye/data/photographers.json");
+        }
         return this.data;
+    }
+
+    async verifierLien(url) {
+        const response = await fetch(url);
+        if (response.ok) {
+            return true;
+        } 
+        else {
+            return false;
+        }
     }
 
     async getPhotographers(){
