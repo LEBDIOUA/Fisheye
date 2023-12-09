@@ -1,54 +1,54 @@
 
-class Photographer{
-    constructor(id, name, city, country, tagline, price, portrait){
-        this.id = id
-        this.name = name
-        this.city = city
-        this.country = country
-        this.tagline = tagline
-        this.price = price
-        this.portrait = portrait
-    }
+class Photographer {
+	constructor(photograph) {
+		this.id = photograph.id;
+		this.name = photograph.name;
+		this.city = photograph.city;
+		this.country = photograph.country;
+		this.tagline = photograph.tagline;
+		this.price = photograph.price;
+		this.portrait = photograph.portrait;
+	}
 
-    get getId(){
-        return this.id;
-    }
+	get getId() {
+		return this.id;
+	}
 
-    get getName(){
-        return this.name;
-    }
+	get getName() {
+		return this.name;
+	}
 
-    get getFirstNamePhotograph(){
-        let firstName = "";
-        let i = 0;
-        let trouv = false;
-        
-        while(trouv === false){
-            if(this.getName[i] == " "){
-                trouv = true;
-            }
-            else{
-                firstName += this.getName[i];
-                i++;
-            }
-        }
-        return firstName;
-    }
+	get getFirstNamePhotograph() {
+		let firstName = '';
+		let i = 0;
+		let trouv = false;
 
-    get getAdresse(){
-        return this.city + ", "+this.country;
-    }
+		while (trouv === false) {
+			if (this.getName[i] === ' ') {
+				trouv = true;
+			} else {
+				firstName += this.getName[i];
+				i++;
+			}
+		}
 
-    get getTagline(){
-        return this.tagline;
-    }
+		return firstName;
+	}
 
-    get getPrice(){
-        return this.price + "€/jour";
-    }
+	get getAdresse() {
+		return this.city + ', ' + this.country;
+	}
 
-    get getPortrait(){
-        return this.portrait;
-    }
+	get getTagline() {
+		return this.tagline;
+	}
+
+	get getPrice() {
+		return this.price + '€/jour';
+	}
+
+	get getPortrait() {
+		return this.portrait;
+	}
 }
 export default Photographer;

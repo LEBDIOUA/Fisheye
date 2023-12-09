@@ -1,19 +1,24 @@
-import Controller from "./controller/controller.js"
-let controller = new Controller();
+import Controller from './controller/controller.js';
+const controller = new Controller();
 
 // Récupérer les paramètres de l'URL
-const queryString = window.location.search;
 const urlParams = new URLSearchParams(window.location.search);
 
-//afficher photograph
-controller.afficherPhotograph(urlParams.get("id"));
+// Afficher photograph
+controller.afficherPhotograph(urlParams.get('id'));
 
-//afficher Liste de tri
-controller.chargerListeTri(urlParams.get("id"));
-// controller.appliquerTri();
+// Afficher Liste de tri
+controller.chargerListeTri(urlParams.get('id'));
+// Controller.appliquerTri();
 
-//afficher la liste des medias
-controller.afficherListeMedias(urlParams.get("id"), "getMedias");
+// afficher la liste des medias
+controller.afficherListeMedias(urlParams.get('id'), 'getMedias');
 
-//Chargement du modal contact
-controller.afficherModalContact(".contact_modal", ".modal", ".ouvrirModal", ".fermerModal", urlParams.get("id"));
+// Chargement du modal contact
+controller.afficherModalContact('.modal', urlParams.get('id'));
+
+addEventListener('keydown', event => {
+    if (event.key === 'Backspace') {
+        window.location.href = '../';
+    } 
+});

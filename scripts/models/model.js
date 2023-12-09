@@ -1,173 +1,172 @@
-import Photographer from "./photographer.js";
-import Media from "./media.js";
-class Model{
-    static instance = null;
+import Photographer from './photographer.js';
+import Media from './media.js';
+class Model {
+	static instance = null;
 
-    static getInstance(){
-        if (this.instance == null){
-            this.instance = new Model();
-        }
-        return(this.instance);
-    }
+	static getInstance() {
+		if (this.instance === null) {
+			this.instance = new Model();
+		}
 
-    get(url) {
-        return fetch(url)
-            .then(function(httpBodyResponse) {
-                // httpBodyResponse contient la réponse dans son entièreté, avec le header & le reste. 
-                // Du coup, avec .json, on réccupère la partie "json" de la réponse, qui est ce dont
-                // on a réellement besoin. 
-                let response = httpBodyResponse.json();
-                return response;
-            })
-            .catch(function(error) {
-                // gestion basique des erreurs. 
-                console.log("Une erreur s'est produite :");
-                console.log(error);
-            })
-    }
+		return (this.instance);
+	}
 
-    async getData() {
-        const url = "../data/photographers.json";
-        const linkExists = await this.verifierLien(url);
-        
-        if (linkExists) {
-            this.data = await this.get(url);
-        } else {
-            this.data = await this.get("/Fisheye/data/photographers.json");
-        }
-        
-        return this.data;
-    }
-    
-    async verifierLien(url) {
-        try {
-            const response = await fetch(url);
-            return response.ok;
-        } catch (error) {
-            console.error("Erreur lors de la vérification du lien :", error);
-            return false;
-        }
-    }
+	get(url) {
+		return fetch(url)
+			.then(httpBodyResponse => {
+				// HttpBodyResponse contient la réponse dans son entièreté, avec le header & le reste.
+				// Du coup, avec .json, on réccupère la partie 'json' de la réponse, qui est ce dont
+				// on a réellement besoin.
+				const response = httpBodyResponse.json();
+				return response;
+			})
+			.catch(error => {
+				// Gestion basique des erreurs.
+				console.log('Une erreur s\'est produite :');
+				console.log(error);
+			});
+	}
 
-    async getPhotographers(){
-        let data = await this.getData();
-        let listPhotographers = [];
+	async getData() {
+		const url = '../data/photographers.json';
+		const linkExists = await this.verifierLien(url);
 
-        for(let i=0; i<data.photographers.length; i++){
-            listPhotographers.push(new Photographer(data.photographers[i].id, data.photographers[i].name, data.photographers[i].city, data.photographers[i].country, data.photographers[i].tagline, data.photographers[i].price, data.photographers[i].portrait));
-        }
-        return listPhotographers;
-    }
+		if (linkExists) {
+			this.data = await this.get(url);
+		} else {
+			this.data = await this.get('/Fisheye/data/photographers.json');
+		}
 
-    async getPhotographById(id){
-        
-        let data = await this.getData();
-        let photograph;
-        let i = 0;
-        let trouv = false;
+		return this.data;
+	}
 
-       do{
-            if(id == data.photographers[i].id){
-                photograph = new Photographer(data.photographers[i].id, data.photographers[i].name, data.photographers[i].city, data.photographers[i].country, data.photographers[i].tagline, data.photographers[i].price, data.photographers[i].portrait);
-                trouv = true;
-            }
-            else{
-                i++;
-            }
-        }while (i<data.photographers.length && trouv==false);
-        
-        return photograph;
-    }
+	async verifierLien(url) {
+		try {
+			const response = await fetch(url);
+			return response.ok;
+		} catch (error) {
+			console.error('Erreur lors de la vérification du lien :', error);
+			return false;
+		}
+	}
 
-    async getFirstNamePhotograph(id){
-        let photograph = await this.getPhotographById(id);
-        let trouv = false;
-        let firstName = "";
-        let i = 0;
-        
-        while(trouv === false){
-            if(photograph.getName[i] == " "){
-                trouv = true;
-            }
-            else{
-                firstName += photograph.getName[i];
-                i++;
-            }
-        }
-        return firstName;
-    }
+	async getPhotographers() {
+		const data = await this.getData();
+		const listPhotographers = [];
 
-    async getMedias(photographId){
-        let data = await this.getData();
+		for (let i = 0; i < data.photographers.length; i++) {
+			listPhotographers.push(new Photographer(data.photographers[i]));
+		}
 
-        let listMedia = [];
+		return listPhotographers;
+	}
 
-        for(let i=0; i<data.media.length; i++){
-            if(data.media[i].photographerId == photographId){
-                listMedia.push(new Media(data.media[i]));
-            }
-        }
+	async getPhotographById(id) {
+		const data = await this.getData();
+		let photograph;
+		let i = 0;
+		let trouv = false;
 
-        return listMedia;
-    }
-    
-    async getMediasByTitle(photographId){
-        
-        let data = await this.getMedias(photographId);
-        let temp;
-        let trouv;
-        do{
-            trouv = false;
-            for (let i=1; i<data.length; i++){
-                if(data[i].getTitre < data[i-1].getTitre){
-                    temp = data[i];
-                    data[i] = data[i-1];
-                    data[i-1] = temp;
-                    trouv  = true;
-                }
-            }
-        }while(trouv == true);
+		do {
+			if (parseInt(id, 10) === parseInt(data.photographers[i].id, 10)) {
+				photograph = new Photographer(data.photographers[i]);
+				trouv = true;
+			} else {
+				i++;
+			}
+		} while (i < data.photographers.length && trouv === false);
 
-        return data;
-    }
+		return photograph;
+	}
 
-    async getMediasByDate(photographId){
-        let data = await this.getMedias(photographId);
-        
-        let temp;
-        let trouv;
-        do{
-            trouv = false;
-            for (let i=1; i<data.length; i++){
-                if(data[i].getDate > data[i-1].getDate){
-                    temp = data[i];
-                    data[i] = data[i-1];
-                    data[i-1] = temp;
-                    trouv  = true;
-                }
-            }
-        }while(trouv == true);
+	async getFirstNamePhotograph(id) {
+		const photograph = await this.getPhotographById(id);
+		let trouv = false;
+		let firstName = '';
+		let i = 0;
 
-        return data;
-    }
+		while (trouv === false) {
+			if (photograph.getName[i] === ' ') {
+				trouv = true;
+			} else {
+				firstName += photograph.getName[i];
+				i++;
+			}
+		}
 
-    async getMediasByLikes(photographId){
-        let data = await this.getMedias(photographId);
-        let temp;
-        let trouv;
-        do{
-            trouv = false;
-            for (let i=1; i<data.length; i++){
-                if(data[i].getLikes > data[i-1].getLikes){
-                    temp = data[i];
-                    data[i] = data[i-1];
-                    data[i-1] = temp;
-                    trouv  = true;
-                }
-            }
-        }while(trouv == true);
+		return firstName;
+	}
 
-        return data;
-    }
+	async getMedias(photographId) {
+		const data = await this.getData();
+
+		const listMedia = [];
+
+		for (let i = 0; i < data.media.length; i++) {
+			if (parseInt(data.media[i].photographerId, 10) === parseInt(photographId, 10)) {
+				listMedia.push(new Media(data.media[i]));
+			}
+		}
+
+		return listMedia;
+	}
+
+	async getMediasByTitle(photographId) {
+		const data = await this.getMedias(photographId);
+		let temp;
+		let trouv;
+		do {
+			trouv = false;
+			for (let i = 1; i < data.length; i++) {
+				if (data[i].getTitre < data[i - 1].getTitre) {
+					temp = data[i];
+					data[i] = data[i - 1];
+					data[i - 1] = temp;
+					trouv = true;
+				}
+			}
+		} while (trouv === true);
+
+		return data;
+	}
+
+	async getMediasByDate(photographId) {
+		const data = await this.getMedias(photographId);
+
+		let temp;
+		let trouv;
+		do {
+			trouv = false;
+			for (let i = 1; i < data.length; i++) {
+				if (data[i].getDate > data[i - 1].getDate) {
+					temp = data[i];
+					data[i] = data[i - 1];
+					data[i - 1] = temp;
+					trouv = true;
+				}
+			}
+		} while (trouv === true);
+
+		return data;
+	}
+
+	async getMediasByLikes(photographId) {
+		const data = await this.getMedias(photographId);
+		let temp;
+		let trouv;
+		do {
+			trouv = false;
+			for (let i = 1; i < data.length; i++) {
+				if (data[i].getLikes > data[i - 1].getLikes) {
+					temp = data[i];
+					data[i] = data[i - 1];
+					data[i - 1] = temp;
+					trouv = true;
+				}
+			}
+		} while (trouv === true);
+
+		return data;
+	}
 }
 export default Model;

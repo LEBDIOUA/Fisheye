@@ -1,64 +1,58 @@
-class Media{
-    constructor(data){
-        this.id = data.id;
-        this.photographerId = data.photographerId;
-        this.title = data.title;
-        this.likes = data.likes;
-        this.date = data.date;
-        this.price = data.price;
+class Media {
+	constructor(data) {
+		this.id = data.id;
+		this.photographerId = data.photographerId;
+		this.title = data.title;
+		this.likes = data.likes;
+		this.date = data.date;
+		this.price = data.price;
 
-        if("image" in data){
-            this.content = data.image;
-            this.isVideo = false;
-        }
-        else if("video" in data){
-            this.content = data.video;
-            this.isVideo = true;
-        }
-    }  
-    
-    get getPhotographId(){
-        return this.photographerId;
-    }
+		if ('image' in data) {
+			this.content = data.image;
+			this.isVideo = false;
+		} else if ('video' in data) {
+			this.content = data.video;
+			this.isVideo = true;
+		}
+	}
 
-    get getTitre(){
-        return this.title;
-    }
+	get getPhotographId() {
+		return this.photographerId;
+	}
 
-    get getContent(){
-        return this.content;
-    }
+	get getTitre() {
+		return this.title;
+	}
 
-    get getDate(){
-        return this.date;
-    }
+	get getContent() {
+		return this.content;
+	}
 
-    get getLikes(){
-        return this.likes;
-    }
+	get getDate() {
+		return this.date;
+	}
 
-    get getTitre(){
-        return this.title;
-    }
+	get getLikes() {
+		return this.likes;
+	}
 
-    get getisVideo(){
-        return this.isVideo;
-    }
+	get getisVideo() {
+		return this.isVideo;
+	}
 
-    ajouterLike(){
-        this.likes += 1;
-    }
+	ajouterLike() {
+		this.likes += 1;
+	}
 
-    getMediaFactory(photograph){
-        let code = "";
-        if(this.isVideo === false){
-            code += `<img src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" alt="${this.getTitre}" class="media"/>`;
-        }
+	getMediaFactory(photograph) {
+		let code = '';
+		if (this.isVideo === false) {
+			code += `<img src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt='${this.getTitre}' class='media'/>`;
+		} else if (this.isVideo === true) {
+			code += `<video controls class='media'> <source src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type='video/mp4'> </video>`;
+		}
 
-        else if(this.isVideo === true){
-            code += `<video controls class="media"> <source src="../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}" type="video/mp4"> </video>`;
-        }
-        return code;
-    }
+		return code;
+	}
 }
 export default Media;
