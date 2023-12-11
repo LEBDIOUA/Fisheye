@@ -63,7 +63,6 @@ class ListeMediasView {
 				if (this.listeMedias[index].isVideo) {
 					event.preventDefault();
 				}
-
 				Controller.afficherModalLightBox(this.photograph, this.listeMedias, index);
 			});
 		});

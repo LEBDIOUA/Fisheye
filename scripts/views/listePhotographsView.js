@@ -1,9 +1,9 @@
 class ListePhotographsView {
 	afficherPhotograph(photograph) {
 		const content = `
-            <article>
+            <article tabIndex=0>
                 <a class= "articleLien" href="./pages/photographer.html?id=${photograph.getId}">
-                    <img class="photoPhotograph" src="./assets/images/PhotographersIDPhotos/${photograph.getPortrait}" alt= "Photo de ${photograph.getName}" >
+                    <img class="photoPhotograph" src="./assets/images/PhotographersIDPhotos/${photograph.getPortrait}" alt= "Photo de ${photograph.getName}" title= "Photo de ${photograph.getName}">
                     <h2 class="nomPhotograph">${photograph.getName}</h2>
                 </a>
                 <h3 class="adrPhotograph">${photograph.getAdresse}</h3>
@@ -16,9 +16,9 @@ class ListePhotographsView {
 	headerPhotograph(photograph) {
 		const header = document.querySelector(".photograph-header");
 		const photographDetail = document.createElement("div");
-		const nomPhotograph = document.createElement("h1");
+		const nomPhotograph = document.createElement("h2");
 		const photographInfo = document.createElement("div");
-		const adresse = document.createElement("h2");
+		const adresse = document.createElement("h3");
 		const slogan = document.createElement("p");
 		const photo = document.createElement("img");
 
@@ -28,6 +28,7 @@ class ListePhotographsView {
 
 		photo.setAttribute("src", "../assets/images/PhotographersIDPhotos/" + photograph.getPortrait);
 		photo.setAttribute("alt", "Photo de " + photograph.getName);
+		photo.setAttribute("title", "Photo de " + photograph.getName);
 		photo.setAttribute("class", "photoPhotograph");
 		nomPhotograph.setAttribute("class", "nomPhotograph");
 		adresse.setAttribute("class", "adrPhotograph");
@@ -44,7 +45,7 @@ class ListePhotographsView {
 	}
 
 	async render(listePhotographs) {
-		const photographSection = document.querySelector(".photographer_section");
+		const photographSection = document.querySelector("main");
 
 		for (let i = 0; i < listePhotographs.length; i++) {
 			photographSection.innerHTML += this.afficherPhotograph(listePhotographs[i]);

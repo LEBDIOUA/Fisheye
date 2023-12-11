@@ -47,9 +47,9 @@ class Media {
 	getMediaFactory(photograph) {
 		let code = '';
 		if (this.isVideo === false) {
-			code += `<img src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt='${this.getTitre}' class='media'/>`;
+			code += `<img src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt='${this.getTitre}' class='media'  tabindex='0'/>`;
 		} else if (this.isVideo === true) {
-			code += `<video controls class='media'> <source src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type='video/mp4'> </video>`;
+			code += `<video controls class='media'> <source src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type='video/mp4'  tabindex='0'> </video>`;
 		}
 
 		return code;

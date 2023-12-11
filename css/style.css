@@ -260,23 +260,26 @@ main.peuVisible {
   top: 0px;
   left: 100px;
 }
-.triSection .listeTri li {
+.triSection .listeTri li:not(li[role=separateur]) {
   width: 100%;
   height: 69px;
-}
-.triSection .listeTri li hr {
-  width: 150px;
-  position: relative;
-  left: -10px;
-}
-.triSection .listeTri li:not(:first-child) {
-  display: none;
 }
 .triSection .listeTri li:first-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.triSection .listeTri li[role=separateur] {
+  border-top: 2px solid white;
+  width: 150px;
+  height: 0px;
+}
+.triSection .listeTri .liCache {
+  display: none;
+}
+.triSection .listeTri .liNonCache {
+  display: block;
 }
 
 .mediaSection {

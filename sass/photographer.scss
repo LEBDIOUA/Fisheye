@@ -98,23 +98,26 @@ main {
         position: absolute;
         top: 0px;
         left: 100px;
-        li{
+        li:not(li[role='separateur']){
             width: 100%;
             height: 69px;
-            hr {
-                width: 150px;
-                position: relative;
-                left: -10px;
-            }
-        }
-        li:not(:first-child){
-            display: none;
         }
         li:first-child{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+        }
+        li[role='separateur'] {
+            border-top: 2px solid white;
+            width: 150px;
+            height: 0px;
+        }
+        .liCache{
+            display: none;
+        }
+        .liNonCache{
+            display: block;
         }
     }
 }

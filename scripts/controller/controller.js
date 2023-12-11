@@ -53,7 +53,7 @@ class Controller {
 		maliste.addEventListener('click', () => {
 			listeTri.cacherAfficherListeTri();
 		});
-		for (let i = 1; i < liElements.length; i++) {
+		for (let i = 2; i < liElements.length; i+=2) {
 			liElements[i].addEventListener('click', () => {
 				this.afficherListeMedias(id, listeTri.genererFonction(liElements[i]));
 				listeTri.choisirTri(i);
