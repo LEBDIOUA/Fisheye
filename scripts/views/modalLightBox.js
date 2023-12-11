@@ -87,10 +87,11 @@ class ModalLightBox extends Modal {
 		const modal = document.querySelector('.lightBox');
 		const lightBoxContent = modal.querySelector('.lightBoxContent');
 		const titre = modal.querySelector('h2');
+		
+		console.log(this.listeMedias[this.position].getMediaFactory(this.photograph));
 
 		titre.textContent = this.listeMedias[this.position].getTitre;
 		lightBoxContent.innerHTML = this.listeMedias[this.position].getMediaFactory(this.photograph);
-		console.log(this.listeMedias[temp].getMediaFactory(this.photograph));
 	}
 
 	mediaPrecedent() {
