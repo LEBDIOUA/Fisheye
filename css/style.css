@@ -87,6 +87,7 @@ header .logo {
   border-radius: 100px;
   border: 2px solid rgb(88, 199, 147);
   transition: all 0.2s;
+  object-fit: cover;
 }
 
 @media (max-width: 1024px) {
@@ -170,6 +171,13 @@ header .logo {
   background-color: #901C1C;
   border-radius: 5px;
 }
+.triSection .listeTri:hover, .contact_button:hover, .triSection .listeTri:focus, .contact_button:focus {
+  color: black;
+  background: #DB8876;
+}
+.triSection .listeTri:hover *, .contact_button:hover *, .triSection .listeTri:focus *, .contact_button:focus * {
+  border-color: #000;
+}
 
 .bodydesactive {
   overflow: hidden;
@@ -193,10 +201,6 @@ main.peuVisible {
 .contact_button {
   cursor: pointer;
   justify-self: center;
-}
-.contact_button:hover, .contact_button:focus {
-  color: black;
-  background: #DB8876;
 }
 
 .photograph-header {
@@ -262,7 +266,9 @@ main.peuVisible {
 }
 .triSection .listeTri li:not(li[role=separateur]) {
   width: 100%;
-  height: 69px;
+  height: 49px;
+  margin: 10px 0px;
+  cursor: pointer;
 }
 .triSection .listeTri li:first-child {
   display: flex;

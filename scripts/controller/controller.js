@@ -23,13 +23,28 @@ class Controller {
 		const photograph = await this.model.getPhotographById(id);
 		return photograph.getName;
 	}
-
-	// Async getMediaFactory(id, position) {
-	//     const photograph = await this.model.getPhotographById(id);
-	//     const listeMediasView = new ListeMediasView(photograph, null);
-	//     const mediaResult = await listeMediasView.getMediaFactory(position);
-	//     return mediaResult;
-	// }
+	
+	ajouterEcouteurClicsMedias(photograph, listeMedias) {
+		const section = document.querySelector('.mediaSection')
+		const medias = section.querySelectorAll('.media');
+		medias.forEach((media, index) => {
+			media.addEventListener('click', event => {
+				if (listeMedias[index].isVideo) {
+					event.preventDefault();
+				}
+				this.afficherModalLightBox(photograph, listeMedias, index);
+			});
+			media.addEventListener('keydown', event => {
+				if (event.key === 'Enter') {
+					if (listeMedias[index].isVideo) {
+						event.preventDefault();
+					}
+					this.afficherModalLightBox(photograph, listeMedias, index);
+				}
+				event.stopPropagation();
+			});
+		});
+	}
 
 	async afficherListeMedias(photographId, filtre) {
 		let medias;
@@ -42,25 +57,38 @@ class Controller {
 		const photograph = await this.model.getPhotographById(photographId);
 		const listeMediasView = new ListeMediasView(photograph, medias);
 		listeMediasView.render();
+		this.ajouterEcouteurClicsMedias(photograph, medias);
 	}
 
 	chargerListeTri(id) {
 		const listeTri = new TriView();
 		listeTri.construireListeTri();
+
 		const maliste = document.querySelector('.listeTri');
-		const liElements = document.querySelectorAll('.listeTri li');
+		const liElements = maliste.querySelectorAll('li');
 
 		maliste.addEventListener('click', () => {
 			listeTri.cacherAfficherListeTri();
 		});
+
 		for (let i = 2; i < liElements.length; i+=2) {
+			liElements[i - 1].addEventListener('click', function(event) {
+				event.preventDefault();
+			  });
 			liElements[i].addEventListener('click', () => {
-				this.afficherListeMedias(id, listeTri.genererFonction(liElements[i]));
 				listeTri.choisirTri(i);
+				this.afficherListeMedias(id, listeTri.genererFonction(liElements[0]));
+			});
+			liElements[i].addEventListener('keydown', event => {
+				if (event.key === 'Enter') {
+					listeTri.choisirTri(i);
+					this.afficherListeMedias(id, listeTri.genererFonction(liElements[0]));
+				}
+				event.stopPropagation();
 			});
 		}
 
-		addEventListener('keydown', event => {
+		maliste.addEventListener('keydown', event => {
 			if (event.key === 'ArrowUp') {
 				event.preventDefault();
 				listeTri.choisirTri(null, 'up');
@@ -71,6 +99,7 @@ class Controller {
 				event.preventDefault();
 				this.afficherListeMedias(id, listeTri.genererFonction(null));
 			}
+			event.stopPropagation();
 		});
 	}
 
@@ -79,9 +108,14 @@ class Controller {
 		monModal.chargerModal();
 	}
 
-	static async afficherModalLightBox(photograph, medias, position) {
+	async afficherModalLightBox(photograph, medias, position) {
 		const monModal = new ModalLightBox(photograph, medias, position);
 		monModal.afficherLightBox();
+		addEventListener('keydown', event => {
+			if (event.key === 'Escape') {
+				monModal.fermerModal();
+			}
+		});
 	}
 }
 export default Controller;

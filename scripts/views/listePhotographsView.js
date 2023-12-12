@@ -1,7 +1,7 @@
 class ListePhotographsView {
 	afficherPhotograph(photograph) {
 		const content = `
-            <article tabIndex=0>
+            <article>
                 <a class= "articleLien" href="./pages/photographer.html?id=${photograph.getId}">
                     <img class="photoPhotograph" src="./assets/images/PhotographersIDPhotos/${photograph.getPortrait}" alt= "Photo de ${photograph.getName}" title= "Photo de ${photograph.getName}">
                     <h2 class="nomPhotograph">${photograph.getName}</h2>
@@ -32,7 +32,9 @@ class ListePhotographsView {
 		photo.setAttribute("class", "photoPhotograph");
 		nomPhotograph.setAttribute("class", "nomPhotograph");
 		adresse.setAttribute("class", "adrPhotograph");
+		adresse.setAttribute("aria-label", "Localisation");
 		slogan.setAttribute("class", "slogan");
+		adresse.setAttribute("aria-label", "Slogan");
 
 		photographInfo.appendChild(adresse);
 		photographInfo.appendChild(slogan);

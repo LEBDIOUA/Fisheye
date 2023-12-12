@@ -10,13 +10,6 @@ class ModalLightBox extends Modal {
 		this.main = document.querySelector('main');
 		this.precedent = document.querySelector('.precedent');
 		this.suivant = document.querySelector('.suivant');
-
-		// This.listeMedias.forEach((element, index)=> {
-		//     console.log(element, media)
-		//     if(element === media){
-		//         this.position = index;
-		//     }
-		// });
 	}
 
 	static construireLightBox() {
@@ -32,11 +25,11 @@ class ModalLightBox extends Modal {
 		lbContent.innerHTML = `
                 <div class='maGrid'>
                     <i class='fa-solid fa-xmark fermerLightBox'></i>
-                    <i class='fa-solid fa-angle-left precedent active'></i>
+                    <i class='fa-solid fa-angle-left precedent active' tabindex = '0'></i>
                     <div class='lightBoxContent'>
                     </div>
                     <h2></h2>
-                    <i class='fa-solid fa-chevron-right suivant active'></i>
+                    <i class='fa-solid fa-chevron-right suivant active' tabindex = '0'></i>
                 </div>
         `;
 		main.appendChild(lbContent);
@@ -87,11 +80,13 @@ class ModalLightBox extends Modal {
 		const modal = document.querySelector('.lightBox');
 		const lightBoxContent = modal.querySelector('.lightBoxContent');
 		const titre = modal.querySelector('h2');
-		
-		console.log(this.listeMedias[this.position].getMediaFactory(this.photograph));
 
 		titre.textContent = this.listeMedias[this.position].getTitre;
 		lightBoxContent.innerHTML = this.listeMedias[this.position].getMediaFactory(this.photograph);
+		if(this.listeMedias[this.position].getMediaFactory(this.photograph).includes('video')){
+			const maVideo = lightBoxContent.querySelector('video');
+			maVideo.setAttribute('controls', '');
+		}
 	}
 
 	mediaPrecedent() {

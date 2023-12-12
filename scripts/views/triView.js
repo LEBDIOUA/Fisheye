@@ -8,15 +8,16 @@ class TriView {
 		const content = `
         <section class='triSection'>
             <p class='tri'>Trier par : </p>
-            <ul class = 'listeTri' role="listbox" tabindex='0'>
-                <li role='option' id='populaire' name='popularite'>
+			<p id='description-trie' class='sr-only'>Triez la liste des medias en sélectionnant une option dans la liste ci-dessous.</p>
+            <ul class = 'listeTri' role = 'listbox' tabindex = '0' aria-describedby = 'description-trie'>
+                <li role = 'option' id = 'populaire' name = 'popularite' aria-label  = 'Trier la liste des medias par popularité'>
 					Popularité
-					<i class='fa-solid fa-chevron-down iconTri'></i>
+					<i class = 'fa-solid fa-chevron-down iconTri'></i>
 				</li>
-				<li role='separateur' id='1' class="liCache"></li>
-                <li role='option' id='date' name='date' class="liCache">Date</li>
-				<li role='separateur' id='2' class="liCache"></li>
-                <li role='option' id='titre' name='titre' class="liCache">Titre</li>
+				<li role = 'separateur' id = '1' class = 'liCache' aria-hidden = 'true'></li>
+                <li role = 'option' id = 'date' name = 'date' class = 'liCache' aria-label = 'Trier la liste des medias par date'>Date</li>
+				<li role = 'separateur' id = '2' class = 'liCache' aria-hidden = 'true'></li>
+                <li role = 'option' id = 'titre' name = 'titre' class = 'liCache' aria-label = 'Trier la liste des medias par titre'>Titre</li>
             </ul>
         </section>`;
 		main.innerHTML += content;

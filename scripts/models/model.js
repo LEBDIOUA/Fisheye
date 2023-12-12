@@ -99,15 +99,12 @@ class Model {
 
 	async getMedias(photographId) {
 		const data = await this.getData();
-
 		const listMedia = [];
-
 		for (let i = 0; i < data.media.length; i++) {
 			if (parseInt(data.media[i].photographerId, 10) === parseInt(photographId, 10)) {
 				listMedia.push(new Media(data.media[i]));
 			}
 		}
-
 		return listMedia;
 	}
 

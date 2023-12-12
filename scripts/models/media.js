@@ -16,6 +16,10 @@ class Media {
 		}
 	}
 
+	get getId() {
+		return this.id;
+	}
+
 	get getPhotographId() {
 		return this.photographerId;
 	}
@@ -47,9 +51,9 @@ class Media {
 	getMediaFactory(photograph) {
 		let code = '';
 		if (this.isVideo === false) {
-			code += `<img src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt='${this.getTitre}' class='media'  tabindex='0'/>`;
+			code += `<img src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt = '${this.getTitre}' class = 'media'  tabindex = '0' data-id = '${this.getId}'  data-photographId = '${this.getPhotographId}'/>`;
 		} else if (this.isVideo === true) {
-			code += `<video controls class='media'> <source src='../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type='video/mp4'  tabindex='0'> </video>`;
+			code += `<video class = 'media' data-id = '${this.getId}' data-photographId = '${this.getPhotographId}'> <source src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type = 'video/mp4'  tabindex = '0'> </video>`;
 		}
 
 		return code;

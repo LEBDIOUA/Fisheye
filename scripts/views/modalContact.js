@@ -25,27 +25,35 @@ class ModalContact extends Modal {
 		const content = `
             <div>
                 <label for='prenom'>Prénom</label>
-                <input type='text' id='prenom'/>
+                <input type='text' id='prenom' tabindex = '0'/>
             </div>
             <div>
                 <label for='nom'>Nom</label>
-                <input type='text' id='nom'/>
+                <input type='text' id='nom' tabindex = '0'/>
             </div>
             <div>
                 <label for='email'>Email</label>
-                <input type='email' id='email'/>
+                <input type='email' id='email' tabindex = '0'/>
             </div>
             <div>
                 <label for='msg'>Votre message</label>
-                <textarea name='msg' id='msg' cols='30' rows='10'></textarea>
+                <textarea name='msg' id='msg' cols='30' rows='10' tabindex = '0'></textarea>
             </div>
-            <button class='contact_button fermerModal envoyer'>Envoyer</button>
+            <button class='contact_button fermerModal envoyer' tabindex = '0'>Envoyer</button>
         `;
 		this.form.innerHTML = content;
+		console.log(this.form.querySelectorAll('input')[0])
+		this.form.querySelectorAll('input')[0].setAttribute('autofocus', '');
 		const btn = document.querySelector('.envoyer');
 		btn.addEventListener('click', event => {
 			event.preventDefault();
 			this.envoyerMsg();
+		});
+		btn.addEventListener('keydown', event => {
+			if(event.key === 'Enter') {
+				event.preventDefault();
+				this.envoyerMsg();
+			}
 		});
 	}
 
@@ -58,12 +66,18 @@ class ModalContact extends Modal {
 
 	confirmerEnvoie(prenom, nom) {
 		const content = `
-            <p>${prenom} ${nom}<br/>Votre message a bien été envoyer</p>
+            <p>${prenom} ${nom}<br/>Votre message a bien été envoyé</p>
             <button class='contact_button btnFermer'>Fermer</button>
         `;
 		this.sousModal.innerHTML = content;
 		const btnFermer = this.sousModal.querySelector('.btnFermer');
-		btnFermer.addEventListener('click', this.fermerModal.bind(this));
+		btnFermer.addEventListener('click', super.fermerModal.bind(this));
+		btnFermer.addEventListener('keydown', event => {
+			if(event.key === 'Enter') {
+				super.fermerModal();
+			}
+			event.stopPropagation();
+		});
 	}
 }
 export default ModalContact;

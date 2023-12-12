@@ -89,6 +89,7 @@ header{
     border-radius: 100px;
     border: 2px solid rgb(88 199 147);
     transition: all 0.2s ;
+    object-fit: cover;
 } 
 
 @media (max-width: 1024px){

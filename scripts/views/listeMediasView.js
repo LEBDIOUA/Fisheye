@@ -1,10 +1,9 @@
-import Controller from '../controller/controller.js';
+
 class ListeMediasView {
 	constructor(photograph, medias) {
-		this.nbMedias = 0;
+		this.sommeLikes = 0;
 		this.photograph = photograph;
 		this.listeMedias = medias;
-		// This.controller = new Controller();
 	}
 
 	afficherMedia(position) {
@@ -17,17 +16,15 @@ class ListeMediasView {
                 <p>${media.getLikes} <i class='fa-solid fa-heart btnLike'></i></p>
             </div></article>`;
 
-		this.nbMedias += media.getLikes;
+		this.sommeLikes += media.getLikes;
 		return content;
 	}
 
 	async render() {
-		this.nbMedias = 0;
+		this.sommeLikes = 0;
 
 		// Supprimer la section dont la classe .mediaSection s'il existe
 		const main = document.querySelector('main');
-		// This.ecouterClicsMedias(main);
-
 		const oldMediaSection = main.querySelector('.mediaSection');
 		if (oldMediaSection) {
 			main.removeChild(oldMediaSection);
@@ -39,50 +36,26 @@ class ListeMediasView {
 		for (let i = 0; i < this.listeMedias.length; i++) {
 			newMediaSection.innerHTML += this.afficherMedia(i);
 		}
-
 		main.appendChild(newMediaSection);
 
 		this.aimerMedia(main);
-		this.ecouterClicsMedias();
-	}
-	// EcouterClicsMedias(container) {
-	//     container.addEventListener('click', (event) => {
-	//         if (event.target.classList.contains('media')) {
-	//             const mediaElements = container.querySelectorAll('.media');
-	//             const index = Array.from(mediaElements).indexOf(event.target);
-	//             console.log(index);
-	//             event.stopPropagation();
-	//         }
-	//     });
-	// }
-
-	ecouterClicsMedias() {
-		const medias = document.querySelectorAll('.media');
-		medias.forEach((media, index) => {
-			media.addEventListener('click', event => {
-				if (this.listeMedias[index].isVideo) {
-					event.preventDefault();
-				}
-				Controller.afficherModalLightBox(this.photograph, this.listeMedias, index);
-			});
-		});
 	}
 
 	afficherTotal(main) {
 		const total = main.querySelector('.total');
-		const content = document.createElement('div');
+		const newTotal = document.createElement('div');
 
 		if (total) {
 			main.removeChild(total);
 		}
 
-		content.setAttribute('class', 'total');
-		content.innerHTML = `
-            <p>${this.nbMedias} <i class='fa-solid fa-heart'></i></p>
+		newTotal.setAttribute('class', 'total');
+		newTotal.innerHTML = `
+            <p>${this.sommeLikes} <i class='fa-solid fa-heart'></i></p>
             <p>${this.photograph.getPrice}</p>
         `;
 
-		main.appendChild(content);
+		main.appendChild(newTotal);
 	}
 
 	// Aimer un media en augmentant le nombre de like à 1
