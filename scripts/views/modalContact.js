@@ -1,26 +1,24 @@
 import Modal from './modal.js';
-import Controller from '../controller/controller.js';
 
-class ModalContact extends Modal {
-	constructor(sousModal, id) {
-		super('.contact_modal', '.ouvrirModal', '.fermerModal');
-		this.sousModal = document.querySelector(sousModal);
+class ModalContact {
+	constructor(id) {
+		this.modal = document.querySelector('.contactModal');
+		this.body = document.querySelector('body');
+		this.btnOuvrir = document.querySelector('.ouvrirModal');
+		this.btnfermer = document.querySelector('.fermerModal');
 		this.form = document.querySelector('form');
 		this.nomPhotograph = this.modal.querySelector('.nomPhotographCtc');
 		this.photographId = id;
-		this.controller = new Controller();
 	}
 
-	async chargerModal() {
-		if (this.sousModal.contains(this.nomPhotograph)) {
-			this.sousModal.removeChild(this.nomPhotograph);
-		}
-
-		super.ouvrirModal();
+	construireModal(nomPhotograph){
+		const h2Element = this.modal.querySelectorAll('h2');
+		h2Element[0].setAttribute('aria-hidden', 'false');
 		const nom = document.createElement('h2');
 		nom.setAttribute('class', 'nomPhotographCtc');
-		nom.textContent = await this.controller.afficherNomPhotograph(this.photographId);
-		this.sousModal.insertBefore(nom, this.form);
+		nom.setAttribute('tabindex', '0');
+		nom.textContent = nomPhotograph;
+		this.modal.insertBefore(nom, this.form);
 
 		const content = `
             <div>
@@ -39,20 +37,68 @@ class ModalContact extends Modal {
                 <label for='msg'>Votre message</label>
                 <textarea name='msg' id='msg' cols='30' rows='10' tabindex = '0'></textarea>
             </div>
-            <button class='contact_button fermerModal envoyer' tabindex = '0'>Envoyer</button>
+            <button class='btnContact fermerModal envoyer' tabindex = '0'>Envoyer</button>
         `;
 		this.form.innerHTML = content;
-		console.log(this.form.querySelectorAll('input')[0])
-		this.form.querySelectorAll('input')[0].setAttribute('autofocus', '');
-		const btn = document.querySelector('.envoyer');
-		btn.addEventListener('click', event => {
+	}
+
+	ouvrirModal() {
+
+		this.btnOuvrir.addEventListener('click', () => {
+			this.modal.style.display = 'flex';
+			document.querySelector('main').classList.add('peuVisible');
+			this.body.classList.add('bodydesactive');
+			document.querySelector('main').setAttribute('tabindex', '-1');
+			document.querySelector('main').setAttribute('aria-hidden', 'true');
+			this.modal.querySelectorAll('h2')[0].focus();
+		});
+		this.btnOuvrir.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				this.modal.style.display = 'flex';
+				document.querySelector('main').classList.add('peuVisible');
+				this.body.classList.add('bodydesactive');
+				document.querySelector('main').setAttribute('tabindex', '-1');
+				document.querySelector('main').setAttribute('aria-hidden', 'true');
+				this.modal.querySelectorAll('h2')[0].focus();
+			}			
+		});
+	}
+
+	chargerModal(nomPhotograph) {
+		if (this.modal.contains(this.nomPhotograph)) {
+			this.modal.removeChild(this.nomPhotograph);
+		}
+
+		this.construireModal(nomPhotograph);
+		this.ouvrirModal();
+		
+		//this.form.querySelectorAll('input')[0].setAttribute('autofocus', '');
+		const btnEnvoyer = document.querySelector('.envoyer');
+		btnEnvoyer.addEventListener('click', event => {
 			event.preventDefault();
 			this.envoyerMsg();
 		});
-		btn.addEventListener('keydown', event => {
+		btnEnvoyer.addEventListener('keydown', event => {
 			if(event.key === 'Enter') {
 				event.preventDefault();
 				this.envoyerMsg();
+			}
+		});
+
+		const btnFermer = document.querySelector('.fermerModal');
+		btnFermer.addEventListener("click", () => {
+			this.fermerModal();
+		});
+		
+		addEventListener('keydown', event => {
+			if (event.key === 'Escape') {
+				this.fermerModal();
+			}
+		});
+
+		btnFermer.addEventListener('keydown', event => {
+			if (event.key === 'Enter') {
+				this.fermerModal();
 			}
 		});
 	}
@@ -66,18 +112,28 @@ class ModalContact extends Modal {
 
 	confirmerEnvoie(prenom, nom) {
 		const content = `
-            <p>${prenom} ${nom}<br/>Votre message a bien été envoyé</p>
-            <button class='contact_button btnFermer'>Fermer</button>
+            <p tabindex = '0' class = 'msg'>${prenom} ${nom}<br/>Votre message a bien été envoyé</p>
+            <button class='btnContact btnFermer' tabindex = '0'>Fermer</button>
         `;
-		this.sousModal.innerHTML = content;
-		const btnFermer = this.sousModal.querySelector('.btnFermer');
-		btnFermer.addEventListener('click', super.fermerModal.bind(this));
+		this.modal.innerHTML = content;
+		this.modal.querySelector(".msg").focus();
+		const btnFermer = this.modal.querySelector('.btnFermer');
+		btnFermer.addEventListener('click', this.fermerModal.bind(this));
 		btnFermer.addEventListener('keydown', event => {
 			if(event.key === 'Enter') {
-				super.fermerModal();
+				this.fermerModal.bind(this);
 			}
 			event.stopPropagation();
 		});
+	}
+
+	fermerModal() {
+		this.modal.style.display = 'none';
+		document.querySelector('main').classList.remove('peuVisible');
+		document.querySelector('main').removeAttribute('tabindex');
+		document.querySelector('main').removeAttribute('aria-hidden');
+		this.body.classList.remove('bodydesactive');
+		document.querySelector('main').querySelector('.contact_button').focus();
 	}
 }
 export default ModalContact;

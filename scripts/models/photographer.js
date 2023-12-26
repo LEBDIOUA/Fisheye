@@ -44,7 +44,7 @@ class Photographer {
 	}
 
 	get getPrice() {
-		return this.price + '€/jour';
+		return this.price + '€';
 	}
 
 	get getPortrait() {

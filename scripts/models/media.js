@@ -51,9 +51,14 @@ class Media {
 	getMediaFactory(photograph) {
 		let code = '';
 		if (this.isVideo === false) {
-			code += `<img src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt = '${this.getTitre}' class = 'media'  tabindex = '0' data-id = '${this.getId}'  data-photographId = '${this.getPhotographId}'/>`;
+			code += `<img src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt = '${this.getTitre}' class = 'media' data-id = '${this.getId}'  data-photographId = '${this.getPhotographId}' aria-label = 'Photo ${this.getTitre}. Cliquez ou appuyez sur la touche Entrée pour ouvrir le lightBox'/>`;
 		} else if (this.isVideo === true) {
-			code += `<video class = 'media' data-id = '${this.getId}' data-photographId = '${this.getPhotographId}'> <source src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type = 'video/mp4'  tabindex = '0'> </video>`;
+			code += `
+			<video class = 'media' data-id = '${this.getId}' data-photographId = '${this.getPhotographId}' aria-label = 'Vidéo ${this.getTitre}. Cliquez ou appuyez sur la touche Entrée pour ouvrir le lightBox'> 
+				<source src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' type = 'video/mp4'>
+				Sorry, your browser doesn't support embedded videos.
+			</video>
+			`;
 		}
 
 		return code;

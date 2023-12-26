@@ -11,25 +11,22 @@
   </head>
   <body>
     <header>
-      <h1 class='titrePage' aria-hidden="true">Photographer</h1>
-      <img src='../assets/images/logo.png' class='logo' alt='Fisheye Photographer Page' title='Fisheye Photographer Page'/>
+      <h1 class='titrePage'>Photographer</h1>
+      <a aria-label="Le logo du site, cliquez ou appuyez sur la touche Entrée pour revenir à la page d'accueil" href="../"><img src='../assets/images/logo.png' class='logo' alt='Fisheye Photographer Page' title='Le logo du site'/></a>
     </header>
-    <main id='main'>
+    <main id = 'main'>
       <section class='photograph-header'>
-        <button class='contact_button ouvrirModal' aria-describedby='description-btnContact'>Contactez-moi</button>
-        <p id='description-btnContact' class='sr-only'>Cliquez pour contacter le photographe. Un formulaire s'affichera où vous pourrez remplir vos informations.</p>
+        <button class='btnContact ouvrirModal' aria-label="Cliquez ou appuyez sur la touche Entrée pour contacter le photographe. Un formulaire s'affichera où vous pourrez remplir vos informations">Contactez-moi</button>
       </section>
     </main>
-    <div class='contact_modal'>
-			<div class='modal'>
+    <div class='contactModal'>
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src='../assets/icons/close.svg' class='fermerModal' alt='Close'/>
+          <h2 tabindex="0">Contactez-moi</h2>
+          <img src='../assets/icons/close.svg' class='fermerModal' alt='Close' tabindex="0" aria-label="Cliquez ou appuyez sur la touche Entrée pour fermer le modal"/>
         </header>
 				<form>
-          <button class='contact_button'>Envoyer</button>
+          <button class='btnContact' aria-label="Cliquez ou appuyez sur la touche Entrée pour envoyer vos cordonnées">Envoyer</button>
 				</form>
-			</div>
 		</div>
   </body>
 </html>

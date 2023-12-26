@@ -35,7 +35,7 @@ main {
     }
 }
 
-.contact_button {
+.btnContact{
     @extend %btn;
     cursor: pointer;
     justify-self: center;
@@ -130,19 +130,29 @@ main {
 .mediaSection{
     display: grid;    
     grid-template-columns: 1fr 1fr 1fr;
-    grid-row-gap: 15px;
+    grid-row-gap: 10px;
     grid-column-gap: 7.5%;
     
     article{
         width: 100%;
         height: 351px;
+        gap: 15px;
+        display: flex;
+        flex-direction: column;
         
         img, video{
             width: 100%;
             min-width: 250px;
             height: 300px;
             object-fit: cover;
+        }
+        
+        img, video, .infoLike{
             cursor: pointer;
+        }
+
+        .liked{
+            cursor: default;
         }
 
         div{
@@ -159,7 +169,7 @@ main {
     }
 }
 
-.contact_modal {
+.contactModal {
     display: none;
     position: fixed;
     top: 0px;
@@ -168,35 +178,30 @@ main {
     align-self: center;
     z-index: 1;
     overflow: auto;
-    .modal{
-        gap: 30px;
-        border-radius: 5px;
-        background-color: #DB8876;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    gap: 30px;
+    border-radius: 5px;
+    background-color: #DB8876;
+    flex-direction: column;
+    align-items: center;
+    padding: 35px;
+    header {
         justify-content: space-between;
-        padding: 35px;
-        header {
-            justify-content: space-between;
-            width: 100%;
-            height: auto;
-            img {
-                cursor: pointer;
-            }
+        width: 100%;
+        height: auto;
+        img {
+            cursor: pointer;
         }
-        header h2, .nomPhotographCtc{
-            font-size: 4.444vw; /*64px*/
-            font-weight: normal;
-            align-self: self-start;
-        }
-        p{
-            font-size: 2.083vw; /*30px*/
-            padding: 30px 0px;
-            line-height: 60px;
-            text-align: center;
-        }
+    }
+    header h2, .nomPhotographCtc{
+        font-size: 4.444vw; /*64px*/
+        font-weight: normal;
+        align-self: self-start;
+    }
+    p{
+        font-size: 2.083vw; /*30px*/
+        padding: 30px 0px;
+        line-height: 60px;
+        text-align: center;
     }
     form {
         display: flex;
@@ -261,71 +266,74 @@ main {
     z-index: 1;    
     padding: 40px 100px;
     align-items: center;
-    .maGrid{
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-areas: 'v i x'
-                             'p i s'
-                             'h h h';
-        grid-template-rows: 46% 46% 8%;
-        grid-template-columns: 49px calc(100% - 98px) 49px;
-        .fa-solid{
-            font-size: 2.917vw; /*42px*/ 
-            text-align: center;
-            &.fermerLightBox {
-                background: #901C1C;
-                -webkit-background-clip: text;
-                color: transparent;
-                -webkit-text-stroke: transparent;
-                grid-area: x;
-            }
-            &.precedent{
-                grid-area: p;
-            }
-            &.suivant{
-                grid-area: s;
-            }
-            &.active{
-                background: #901C1C;
-                -webkit-background-clip: text;
-                color: transparent;
-                -webkit-text-stroke: transparent;
-                cursor: pointer;
-            }
-            &.desactive{
-                cursor: default;
-                background: grey;
-                -webkit-background-clip: text;
-                color: transparent;
-                -webkit-text-stroke: transparent;
-            }
+    grid-template-areas: 'v m x'
+                         'p m s'
+                         'h h h';
+    grid-template-rows: 46% 46% 8%;
+    grid-template-columns: 49px calc(100% - 98px) 49px;
+    div{
+        &.fermerLightBox {
+            grid-area: x;
         }
-        .lightBoxContent {
-            width: 100%;
-            height: 100%;
-            text-align-last: center;
-            grid-area: i;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img, video{
-                width: auto;
-                max-width: 100%;
-                height: 100%;
-            }
+        &.precedent{
+            grid-area: p;
         }
-        h2{
-            margin:10px 96px 0px 96px;
-            font-size: 1.667vw; /*24px*/
-            color: #901C1C;
-            grid-area: h;
+        &.suivant{
+            grid-area: s;
         }
     }
-}
-
-article .liked, .lightBox .active{
-    cursor: pointer;
+    .fa-solid{
+        align-self: baseline;
+        font-size: 2.917vw; /*42px*/ 
+        text-align: center;
+        background: #901C1C;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-stroke: transparent;
+        &.active{
+            cursor: pointer;
+        }
+        &.desactive{
+            cursor: default;
+            background: grey;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-stroke: transparent;
+        }
+    }
+    .lightBoxContent {
+        width: 100%;
+        height: 100%;
+        text-align-last: center;
+        grid-area: m;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        img, video{
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+        }
+        .controls {
+            position: absolute;
+            bottom: 10px;
+            button{
+                background-color: transparent;
+                border: none;
+                .fa-solid{
+                    font-size: 1.5vw; 
+                    color: white;
+                }
+            }
+        }
+    }
+    h2{
+        margin:10px 96px 0px 96px;
+        font-size: 1.667vw; /*24px*/
+        color: #901C1C;
+        grid-area: h;
+    }
 }
 
 @media (max-width: 1024px){
@@ -359,7 +367,7 @@ article .liked, .lightBox .active{
     %btn{
         font-size: 1.953vw; /*20px*/
     }
-    .contact_button, .triSection .listeTri li{
+    .btnContact, .triSection .listeTri li{
         height: 60px;
     }
     .triSection{
@@ -373,30 +381,25 @@ article .liked, .lightBox .active{
     .mediaSection article div{
         font-size: 1.172vw; /*12px*/
     }
-    .modal{
-        header h2, .nomPhotographCtc{
+    .contactModal {
+        h2{
             font-size: 4.444vw; /*64px*/
         }
-        p{
-            font-size: 2.93vw; /*30px*/
-        }
+        form {
+            label {
+                font-size: 3.516vw; /*36px*/
+            }
+            button{
+                font-size: 1.758vw; /*18px*/
+            }
+        } 
     }
-    .contact_button form {
-        label {
-            font-size: 3.516vw; /*36px*/
-        }
-        button{
-            font-size: 1.758vw; /*18px*/
-        }
-    } 
     .lightBox {
-        .maGrid{
-            .fa-solid{
-                font-size: 4.102vw; /*42px*/ 
-            }
-            h2{
-                font-size: 2.344vw; /*24px*/
-            }
+        .fa-solid{
+            font-size: 4.102vw; /*42px*/ 
+        }
+        h2{
+            font-size: 2.344vw; /*24px*/
         }
     }
     .total{
@@ -409,8 +412,33 @@ article .liked, .lightBox .active{
 }
 
 @media (max-width: 767.98px){
-    .contact_modal{
+    .mediaSection{   
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+        article{
+            width: 80%;
+            justify-self: center;
+            height: auto;
+            div{
+                font-size: 1.563vw; /*12px*/
+            }
+        }
+    }
+    .contactModal{
         width: 100%;
+        form {
+            h2{
+                font-size: 8.333vw; /*64px*/
+            }
+            form{
+                label {
+                    font-size: 4.688vw; /*36px*/
+                }
+                button{
+                    font-size: 2.344vw; /*18px*/
+                }
+            }
+        } 
     }
     .lightBox{
         padding: 20px;
@@ -434,39 +462,19 @@ article .liked, .lightBox .active{
             font-size: 2.344vw; /*18px*/
         }
     }
-    .mediaSection article div{
-        font-size: 1.563vw; /*12px*/
-    }
-    .modal{
-        header h2, .nomPhotographCtc{
-            font-size: 8.333vw; /*64px*/
-        }
-        p{
-            font-size: 3.906vw; /*30px*/
-        }
-    }
-    .contact_modal form {
-        label {
-            font-size: 4.688vw; /*36px*/
-        }
-        button{
-            font-size: 2.344vw; /*18px*/
-        }
-    } 
     .lightBox {
-        .maGrid{
-            .fa-solid{
-                font-size: 5.469vw; /*42px*/ 
-            }
-            h2{
-                font-size: 3.125vw; /*24px*/
-            }
+        .fa-solid{
+            font-size: 5.469vw; /*42px*/ 
+        }
+        h2{
+            font-size: 3.125vw; /*24px*/
         }
     }
     .total p{
         font-size: 3.125vw; /*24px*/
     }
 }
+
 @media (max-width: 500px){
     .mediaSection{ 
         grid-template-columns: 1fr;

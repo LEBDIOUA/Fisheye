@@ -71,14 +71,14 @@ header{
 
 .slogan {
     color: black;
-    font-size: 0.694vw; /*10px*/
+    font-size: 0.85vw; /*10px*/
     line-height: 20px;
     text-align: center;
 }
 
 .prix {
     color: #757575;
-    font-size: 0.625vw; /*9px*/
+    font-size: 0.75vw; /*9px*/
     line-height: 20px;
     text-align: center;
 }
@@ -104,15 +104,15 @@ header{
     }
     
     .adrPhotograph{
-        font-size: 1.27vw; /*13px*/
+        font-size: 1.5vw; /*13px*/
     }
     
     .slogan {
-        font-size: 0.977vw; /*10px*/
+        font-size: 1.25vw; /*10px*/
     }
     
     .prix {
-        font-size: 0.879vw; /*9px*/
+        font-size: 1.15vw; /*9px*/
     }
     
     .photographer_section{
@@ -124,7 +124,7 @@ header{
     body{
         padding: 10px 30px;
     }
-    header:not(.modal header){
+    header:not(.contactModal header){
         flex-direction: column;
         gap: 10px;
         height: auto;
@@ -135,28 +135,21 @@ header{
     .nomPhotograph{
         font-size: 3.646vw; /*28px*/
     }
-    
     .adrPhotograph{
         font-size: 1.693vw; /*13px*/
     }
-    
     .slogan {
-        font-size: 1.302vw; /*10px*/
+        font-size: 1.55vw; /*10px*/
     }
-    
     .prix {
-        font-size: 1.172vw; /*9px*/
+        font-size: 1.45vw; /*9px*/
     }
-    
     .photographer_section{
-        gap: 5%;
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 500px){
-    .photographer_section{
-        grid-template-columns: 1fr;
-    }    
+@media (max-width: 500px){   
     header h1 {
         font-size: 7.214vw;
     }
@@ -167,9 +160,9 @@ header{
         font-size: 2.605vw; /*13px*/
     }    
     .slogan {
-        font-size: 2.004vw; /*10px*/
+        font-size: 2.4vw; /*10px*/
     }
     .prix {
-        font-size: 1.804vw; /*9px*/
+        font-size: 2.2vw; /*9px*/
     }
 }

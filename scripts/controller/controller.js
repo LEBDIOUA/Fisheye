@@ -6,8 +6,10 @@ import ModalContact from '../views/modalContact.js';
 import ModalLightBox from '../views/modalLightBox.js';
 
 class Controller {
-	model = Model.getInstance();
-	listePhotographsView = new ListePhotographsView();
+	constructor(){
+		this.model = Model.getInstance();
+		this.listePhotographsView = new ListePhotographsView();
+	}
 
 	async afficherListePhotographs() {
 		const photographers = await this.model.getPhotographers();
@@ -19,7 +21,7 @@ class Controller {
 		this.listePhotographsView.headerPhotograph(photograph);
 	}
 
-	async afficherNomPhotograph(id) {
+	async getNomPhotograph(id) {
 		const photograph = await this.model.getPhotographById(id);
 		return photograph.getName;
 	}
@@ -41,7 +43,6 @@ class Controller {
 					}
 					this.afficherModalLightBox(photograph, listeMedias, index);
 				}
-				event.stopPropagation();
 			});
 		});
 	}
@@ -64,12 +65,8 @@ class Controller {
 		const listeTri = new TriView();
 		listeTri.construireListeTri();
 
-		const maliste = document.querySelector('.listeTri');
-		const liElements = maliste.querySelectorAll('li');
-
-		maliste.addEventListener('click', () => {
-			listeTri.cacherAfficherListeTri();
-		});
+		const maListe = document.querySelector('.listeTri');
+		const liElements = maListe.querySelectorAll('li');
 
 		for (let i = 2; i < liElements.length; i+=2) {
 			liElements[i - 1].addEventListener('click', function(event) {
@@ -83,39 +80,51 @@ class Controller {
 				if (event.key === 'Enter') {
 					listeTri.choisirTri(i);
 					this.afficherListeMedias(id, listeTri.genererFonction(liElements[0]));
+					maListe.focus();
 				}
-				event.stopPropagation();
 			});
 		}
-
-		maliste.addEventListener('keydown', event => {
-			if (event.key === 'ArrowUp') {
+		maListe.addEventListener('keydown', event => {
+			const sign = maListe.querySelector(".fa-chevron-up")
+			if (event.key === 'ArrowDown') {
 				event.preventDefault();
-				listeTri.choisirTri(null, 'up');
-			} else if (event.key === 'ArrowDown') {
-				event.preventDefault();
-				listeTri.choisirTri(null, 'down');
-			} else if (event.key === 'Enter') {
-				event.preventDefault();
-				this.afficherListeMedias(id, listeTri.genererFonction(null));
+				if (sign) {
+					let index = Array.from(liElements).indexOf(document.activeElement);
+					if (index === -1 || index + 2 > liElements.length-1) {
+						liElements[0].focus();
+					}
+					else {
+						liElements[index + 2].focus();
+					}
+				}
 			}
-			event.stopPropagation();
+			else if (event.key === 'ArrowUp') {
+				event.preventDefault();
+				let index = Array.from(liElements).indexOf(document.activeElement);
+				if (sign) {
+					if (index === -1 || index - 2 < 0) {
+						liElements[liElements.length-1].focus();
+					}
+					else if (index - 2 >= 0) {
+						liElements[index - 2].focus();
+					}
+				}
+			}
 		});
 	}
 
-	afficherModalContact(sousModal, photographId) {
-		const monModal = new ModalContact(sousModal, photographId);
-		monModal.chargerModal();
+	async afficherModalContact(photographId) {
+		const monModal = new ModalContact(photographId);
+		monModal.chargerModal(await this.getNomPhotograph(photographId));
 	}
 
 	async afficherModalLightBox(photograph, medias, position) {
 		const monModal = new ModalLightBox(photograph, medias, position);
 		monModal.afficherLightBox();
-		addEventListener('keydown', event => {
-			if (event.key === 'Escape') {
-				monModal.fermerModal();
-			}
-		});
+		
+		// console.log('AfficherLB, .precedent', document.querySelector('.precedent').getAttribute('aria-hidden'));
+		// console.log('AfficherLB, .suivant', document.querySelector('.suivant').getAttribute('aria-hidden'));
+		// console.log('AfficherLB, .btnFermer', document.querySelector('.fermerLightBox').getAttribute('aria-hidden'));
 	}
 }
 export default Controller;

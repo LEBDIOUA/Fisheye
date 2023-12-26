@@ -69,14 +69,14 @@ header .logo {
 
 .slogan {
   color: black;
-  font-size: 0.694vw; /*10px*/
+  font-size: 0.85vw; /*10px*/
   line-height: 20px;
   text-align: center;
 }
 
 .prix {
   color: #757575;
-  font-size: 0.625vw; /*9px*/
+  font-size: 0.75vw; /*9px*/
   line-height: 20px;
   text-align: center;
 }
@@ -101,13 +101,13 @@ header .logo {
     font-size: 2.734vw; /*28px*/
   }
   .adrPhotograph {
-    font-size: 1.27vw; /*13px*/
+    font-size: 1.5vw; /*13px*/
   }
   .slogan {
-    font-size: 0.977vw; /*10px*/
+    font-size: 1.25vw; /*10px*/
   }
   .prix {
-    font-size: 0.879vw; /*9px*/
+    font-size: 1.15vw; /*9px*/
   }
   .photographer_section {
     grid-template-columns: 1fr 1fr;
@@ -117,12 +117,12 @@ header .logo {
   body {
     padding: 10px 30px;
   }
-  header:not(.modal header) {
+  header:not(.contactModal header) {
     flex-direction: column;
     gap: 10px;
     height: auto;
   }
-  header:not(.modal header) h1 {
+  header:not(.contactModal header) h1 {
     font-size: 4.688vw;
   }
   .nomPhotograph {
@@ -132,19 +132,16 @@ header .logo {
     font-size: 1.693vw; /*13px*/
   }
   .slogan {
-    font-size: 1.302vw; /*10px*/
+    font-size: 1.55vw; /*10px*/
   }
   .prix {
-    font-size: 1.172vw; /*9px*/
+    font-size: 1.45vw; /*9px*/
   }
-  .photographer_section {
-    gap: 5%;
-  }
-}
-@media (max-width: 500px) {
   .photographer_section {
     grid-template-columns: 1fr;
   }
+}
+@media (max-width: 500px) {
   header h1 {
     font-size: 7.214vw;
   }
@@ -155,13 +152,13 @@ header .logo {
     font-size: 2.605vw; /*13px*/
   }
   .slogan {
-    font-size: 2.004vw; /*10px*/
+    font-size: 2.4vw; /*10px*/
   }
   .prix {
-    font-size: 1.804vw; /*9px*/
+    font-size: 2.2vw; /*9px*/
   }
 }
-.triSection .listeTri, .contact_button {
+.triSection .listeTri, .btnContact {
   font-size: 1.389vw; /*20px*/
   font-weight: bold;
   color: white;
@@ -171,11 +168,11 @@ header .logo {
   background-color: #901C1C;
   border-radius: 5px;
 }
-.triSection .listeTri:hover, .contact_button:hover, .triSection .listeTri:focus, .contact_button:focus {
+.triSection .listeTri:hover, .btnContact:hover, .triSection .listeTri:focus, .btnContact:focus {
   color: black;
   background: #DB8876;
 }
-.triSection .listeTri:hover *, .contact_button:hover *, .triSection .listeTri:focus *, .contact_button:focus * {
+.triSection .listeTri:hover *, .btnContact:hover *, .triSection .listeTri:focus *, .btnContact:focus * {
   border-color: #000;
 }
 
@@ -198,7 +195,7 @@ main.peuVisible {
   opacity: 0.5;
 }
 
-.contact_button {
+.btnContact {
   cursor: pointer;
   justify-self: center;
 }
@@ -291,19 +288,27 @@ main.peuVisible {
 .mediaSection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-row-gap: 15px;
+  grid-row-gap: 10px;
   grid-column-gap: 7.5%;
 }
 .mediaSection article {
   width: 100%;
   height: 351px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
 }
 .mediaSection article img, .mediaSection article video {
   width: 100%;
   min-width: 250px;
   height: 300px;
   object-fit: cover;
+}
+.mediaSection article img, .mediaSection article video, .mediaSection article .infoLike {
   cursor: pointer;
+}
+.mediaSection article .liked {
+  cursor: default;
 }
 .mediaSection article div {
   font-size: 0.833vw; /*12px*/
@@ -317,7 +322,7 @@ main.peuVisible {
   justify-content: space-between;
 }
 
-.contact_modal {
+.contactModal {
   display: none;
   position: fixed;
   top: 0px;
@@ -326,67 +331,62 @@ main.peuVisible {
   align-self: center;
   z-index: 1;
   overflow: auto;
-}
-.contact_modal .modal {
   gap: 30px;
   border-radius: 5px;
   background-color: #DB8876;
-  width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 35px;
 }
-.contact_modal .modal header {
+.contactModal header {
   justify-content: space-between;
   width: 100%;
   height: auto;
 }
-.contact_modal .modal header img {
+.contactModal header img {
   cursor: pointer;
 }
-.contact_modal .modal header h2, .contact_modal .modal .nomPhotographCtc {
+.contactModal header h2, .contactModal .nomPhotographCtc {
   font-size: 4.444vw; /*64px*/
   font-weight: normal;
   align-self: self-start;
 }
-.contact_modal .modal p {
+.contactModal p {
   font-size: 2.083vw; /*30px*/
   padding: 30px 0px;
   line-height: 60px;
   text-align: center;
 }
-.contact_modal form {
+.contactModal form {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
 }
-.contact_modal form label {
+.contactModal form label {
   color: #312E2E;
   font-size: 2.5vw; /*36px*/
 }
-.contact_modal form div {
+.contactModal form div {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: self-start;
 }
-.contact_modal form input, .contact_modal form textarea {
+.contactModal form input, .contactModal form textarea {
   width: 100%;
   border: none;
   border-radius: 5px;
 }
-.contact_modal form input {
+.contactModal form input {
   height: 68px;
 }
-.contact_modal form button {
+.contactModal form button {
   position: relative;
   top: 23px;
   font-size: 1.25vw; /*18px*/
 }
-.contact_modal form, .contact_modal form div {
+.contactModal form, .contactModal form div {
   gap: 20px;
 }
 
@@ -419,69 +419,70 @@ main.peuVisible {
   z-index: 1;
   padding: 40px 100px;
   align-items: center;
-}
-.lightBox .maGrid {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-areas: "v i x" "p i s" "h h h";
+  grid-template-areas: "v m x" "p m s" "h h h";
   grid-template-rows: 46% 46% 8%;
   grid-template-columns: 49px calc(100% - 98px) 49px;
 }
-.lightBox .maGrid .fa-solid {
-  font-size: 2.917vw; /*42px*/
-  text-align: center;
-}
-.lightBox .maGrid .fa-solid.fermerLightBox {
-  background: #901C1C;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-stroke: transparent;
+.lightBox div.fermerLightBox {
   grid-area: x;
 }
-.lightBox .maGrid .fa-solid.precedent {
+.lightBox div.precedent {
   grid-area: p;
 }
-.lightBox .maGrid .fa-solid.suivant {
+.lightBox div.suivant {
   grid-area: s;
 }
-.lightBox .maGrid .fa-solid.active {
+.lightBox .fa-solid {
+  align-self: baseline;
+  font-size: 2.917vw; /*42px*/
+  text-align: center;
   background: #901C1C;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-stroke: transparent;
+}
+.lightBox .fa-solid.active {
   cursor: pointer;
 }
-.lightBox .maGrid .fa-solid.desactive {
+.lightBox .fa-solid.desactive {
   cursor: default;
   background: grey;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-stroke: transparent;
 }
-.lightBox .maGrid .lightBoxContent {
+.lightBox .lightBoxContent {
   width: 100%;
   height: 100%;
   text-align-last: center;
-  grid-area: i;
+  grid-area: m;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
-.lightBox .maGrid .lightBoxContent img, .lightBox .maGrid .lightBoxContent video {
+.lightBox .lightBoxContent img, .lightBox .lightBoxContent video {
   width: auto;
   max-width: 100%;
   height: 100%;
 }
-.lightBox .maGrid h2 {
+.lightBox .lightBoxContent .controls {
+  position: absolute;
+  bottom: 10px;
+}
+.lightBox .lightBoxContent .controls button {
+  background-color: transparent;
+  border: none;
+}
+.lightBox .lightBoxContent .controls button .fa-solid {
+  font-size: 1.5vw;
+  color: white;
+}
+.lightBox h2 {
   margin: 10px 96px 0px 96px;
   font-size: 1.667vw; /*24px*/
   color: #901C1C;
   grid-area: h;
-}
-
-article .liked, .lightBox .active {
-  cursor: pointer;
 }
 
 @media (max-width: 1024px) {
@@ -511,10 +512,10 @@ article .liked, .lightBox .active {
   .photograph-header .slogan {
     font-size: 1.758vw; /*18px*/
   }
-  .contact_button, .triSection .listeTri {
+  .btnContact, .triSection .listeTri {
     font-size: 1.953vw; /*20px*/
   }
-  .contact_button, .triSection .listeTri li {
+  .btnContact, .triSection .listeTri li {
     height: 60px;
   }
   .triSection .tri {
@@ -526,22 +527,19 @@ article .liked, .lightBox .active {
   .mediaSection article div {
     font-size: 1.172vw; /*12px*/
   }
-  .modal header h2, .modal .nomPhotographCtc {
+  .contactModal h2 {
     font-size: 4.444vw; /*64px*/
   }
-  .modal p {
-    font-size: 2.93vw; /*30px*/
-  }
-  .contact_button form label {
+  .contactModal form label {
     font-size: 3.516vw; /*36px*/
   }
-  .contact_button form button {
+  .contactModal form button {
     font-size: 1.758vw; /*18px*/
   }
-  .lightBox .maGrid .fa-solid {
+  .lightBox .fa-solid {
     font-size: 4.102vw; /*42px*/
   }
-  .lightBox .maGrid h2 {
+  .lightBox h2 {
     font-size: 2.344vw; /*24px*/
   }
   .total {
@@ -553,8 +551,29 @@ article .liked, .lightBox .active {
   }
 }
 @media (max-width: 767.98px) {
-  .contact_modal {
+  .mediaSection {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+  .mediaSection article {
+    width: 80%;
+    justify-self: center;
+    height: auto;
+  }
+  .mediaSection article div {
+    font-size: 1.563vw; /*12px*/
+  }
+  .contactModal {
     width: 100%;
+  }
+  .contactModal form h2 {
+    font-size: 8.333vw; /*64px*/
+  }
+  .contactModal form form label {
+    font-size: 4.688vw; /*36px*/
+  }
+  .contactModal form form button {
+    font-size: 2.344vw; /*18px*/
   }
   .lightBox {
     padding: 20px;
@@ -568,31 +587,16 @@ article .liked, .lightBox .active {
   .photograph-header .slogan {
     font-size: 2.344vw; /*18px*/
   }
-  .contact_button, .triSection .listeTri {
+  .btnContact, .triSection .listeTri {
     font-size: 2.604vw; /*20px*/
   }
   .triSection .tri {
     font-size: 2.344vw; /*18px*/
   }
-  .mediaSection article div {
-    font-size: 1.563vw; /*12px*/
-  }
-  .modal header h2, .modal .nomPhotographCtc {
-    font-size: 8.333vw; /*64px*/
-  }
-  .modal p {
-    font-size: 3.906vw; /*30px*/
-  }
-  .contact_modal form label {
-    font-size: 4.688vw; /*36px*/
-  }
-  .contact_modal form button {
-    font-size: 2.344vw; /*18px*/
-  }
-  .lightBox .maGrid .fa-solid {
+  .lightBox .fa-solid {
     font-size: 5.469vw; /*42px*/
   }
-  .lightBox .maGrid h2 {
+  .lightBox h2 {
     font-size: 3.125vw; /*24px*/
   }
   .total p {

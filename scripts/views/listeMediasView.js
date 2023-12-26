@@ -13,7 +13,8 @@ class ListeMediasView {
 		content += `
             <div class='mediaInfo'>
                 <h2 class='titreMedia'>${media.getTitre}</h2>
-                <p>${media.getLikes} <i class='fa-solid fa-heart btnLike'></i></p>
+                <p class= 'infoLike' tabindex = '0' aria-label = 'Ce média a été apprécié ${this.listeMedias[position].getLikes} fois. 
+				Cliquez ou appuyez sur la touche Entrée pour ajouter un like'>${media.getLikes} <i class='fa-solid fa-heart'></i></p>
             </div></article>`;
 
 		this.sommeLikes += media.getLikes;
@@ -37,8 +38,14 @@ class ListeMediasView {
 			newMediaSection.innerHTML += this.afficherMedia(i);
 		}
 		main.appendChild(newMediaSection);
-
+		
+		this.afficherTotal(main);
 		this.aimerMedia(main);
+
+		const media = main.querySelectorAll('.media');
+		for (let i = 0; i < media.length - 1; i++) {
+			media[i].setAttribute('tabindex', '0');
+		}
 	}
 
 	afficherTotal(main) {
@@ -51,8 +58,8 @@ class ListeMediasView {
 
 		newTotal.setAttribute('class', 'total');
 		newTotal.innerHTML = `
-            <p>${this.sommeLikes} <i class='fa-solid fa-heart'></i></p>
-            <p>${this.photograph.getPrice}</p>
+            <h2 tabindex = '0' aria-label = 'Tous les médias ont été appréciés ${this.sommeLikes} fois'>${this.sommeLikes} <i class='fa-solid fa-heart'></i></h2>
+            <h2 tabindex = '0' aria-label = 'Le prix demandé est ${this.photograph.getPrice} par jour'>${this.photograph.getPrice}/jour</h2>
         `;
 
 		main.appendChild(newTotal);
@@ -60,23 +67,42 @@ class ListeMediasView {
 
 	// Aimer un media en augmentant le nombre de like à 1
 	aimerMedia(main) {
-		this.afficherTotal(main);
-
-		const btnLike = document.querySelectorAll('.btnLike');
-		for (let i = 0; i < this.listeMedias.length; i++) {
-			btnLike[i].addEventListener('click', () => {
-				if (!btnLike[i].classList.contains('liked')) {
-					this.listeMedias[i].ajouterLike();
-					this.render();
-					this.initialiserBtnLikes(i);
+		const infoLike = document.querySelectorAll('.infoLike');
+		infoLike.forEach((Element, index) => {
+			Element.addEventListener('click', () => {
+					this.listeMedias[index].ajouterLike();
+					this.majMedia(index);
+					this.initialiserBtnLikes(index);
+			});
+			Element.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter'){
+					this.listeMedias[index].ajouterLike();
+					this.majMedia(index);
+					this.initialiserBtnLikes(index);
 				}
 			});
-		}
+		});
 	}
 
-	initialiserBtnLikes(i) {
-		const btnLike = document.querySelectorAll('.btnLike');
-		btnLike[i].classList.add('liked');
+	initialiserBtnLikes(position) {
+		const infoLike = document.querySelectorAll('.infoLike');
+		infoLike[position].classList.add('liked');
+	}
+
+	majMedia(position){
+		const mediaInfo = document.querySelectorAll(".mediaInfo")[position];
+		const nbLikes = mediaInfo.querySelector("p");
+		const remplacerPar = `
+			<p class= 'infoLike'- tabindex = '0' 
+			aria-label = 'Ce média a été apprécié ${this.listeMedias[position].getLikes} fois. 
+			Cliquez ou appuyez sur la touche Entrée pour ajouter un like'>
+				${this.listeMedias[position].getLikes} <i class='fa-solid fa-heart'></i>
+			</p>`;
+		mediaInfo.removeChild(nbLikes);
+		mediaInfo.innerHTML += remplacerPar;
+		nbLikes.innerHTML = remplacerPar;
+		this.sommeLikes++;
+		this.afficherTotal(main);
 	}
 }
 

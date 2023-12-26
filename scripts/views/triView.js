@@ -7,20 +7,29 @@ class TriView {
 		const main = document.querySelector('main');
 		const content = `
         <section class='triSection'>
-            <p class='tri'>Trier par : </p>
-			<p id='description-trie' class='sr-only'>Triez la liste des medias en sélectionnant une option dans la liste ci-dessous.</p>
-            <ul class = 'listeTri' role = 'listbox' tabindex = '0' aria-describedby = 'description-trie'>
-                <li role = 'option' id = 'populaire' name = 'popularite' aria-label  = 'Trier la liste des medias par popularité'>
+            <h2 class='tri'>Trier par : </h2>
+            <ul class = 'listeTri' role = 'listbox' tabindex = '0' aria-label='Liste contenant trois options. Cliquez ou appuyez sur la touche Entrée pour ouvrir la liste'>
+                <li role = 'option' id = 'populaire' name = 'popularite' aria-label = 'Tri par popularité. Cliquez ou appuyez sur la touche Entrée pour trier la liste des medias par popularité'>
 					Popularité
 					<i class = 'fa-solid fa-chevron-down iconTri'></i>
 				</li>
 				<li role = 'separateur' id = '1' class = 'liCache' aria-hidden = 'true'></li>
-                <li role = 'option' id = 'date' name = 'date' class = 'liCache' aria-label = 'Trier la liste des medias par date'>Date</li>
+                <li role = 'option' id = 'date' name = 'date' class = 'liCache' aria-label = 'Tri par date. Cliquez ou appuyez sur la touche Entrée pour trier la liste des medias par date'>Date</li>
 				<li role = 'separateur' id = '2' class = 'liCache' aria-hidden = 'true'></li>
-                <li role = 'option' id = 'titre' name = 'titre' class = 'liCache' aria-label = 'Trier la liste des medias par titre'>Titre</li>
+                <li role = 'option' id = 'titre' name = 'titre' class = 'liCache' aria-label = 'Tri par titre. Cliquez ou appuyez sur la touche Entrée pour trier la liste des medias par titre'>Titre</li>
             </ul>
         </section>`;
 		main.innerHTML += content;
+		const maListe = document.querySelector(".listeTri");
+
+		maListe.addEventListener('click', () => {
+			this.cacherAfficherListeTri();
+		});
+		maListe.addEventListener('keydown', event => {
+			if (event.key === 'Enter') {
+				this.cacherAfficherListeTri();
+			}
+		});
 	}
 
 	genererFonction(element) {
@@ -56,19 +65,22 @@ class TriView {
 			if (element.classList.contains('liCache') && (index > 0)) {
 				element.classList.remove('liCache');
 				element.classList.add('liNonCache');
-				if (index > 0) {
-					// Changer l'icone
-					icon.classList.remove('fa-chevron-down');
-					icon.classList.add('fa-chevron-up');
-				}
+				element.setAttribute("tabindex", "0");
+				icon.classList.remove('fa-chevron-down');
+				icon.classList.add('fa-chevron-up');
 			} else if (element.classList.contains('liNonCache')  && (index > 0)) {
 				element.classList.remove('liNonCache');
 				element.classList.add('liCache');
-				if (index > 0) {
-					// Changer l'icone
-					icon.classList.remove('fa-chevron-up');
-					icon.classList.add('fa-chevron-down');
-				}
+				element.removeAttribute("tabindex");
+				icon.classList.remove('fa-chevron-up');
+				icon.classList.add('fa-chevron-down');
+				document.querySelector('.listeTri').focus();
+			}
+			if (liElements[0].hasAttribute('tabindex')) {
+				liElements[0].removeAttribute("tabindex");
+			} else {
+				liElements[0].setAttribute("tabindex", "0");
+				liElements[0].focus();
 			}
 		});
 	}
