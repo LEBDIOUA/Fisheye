@@ -51,7 +51,7 @@ class Media {
 	getMediaFactory(photograph) {
 		let code = '';
 		if (this.isVideo === false) {
-			code += `<img src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' alt = '${this.getTitre}' class = 'media' data-id = '${this.getId}'  data-photographId = '${this.getPhotographId}' aria-label = 'Photo ${this.getTitre}. Cliquez ou appuyez sur la touche Entrée pour ouvrir le lightBox'/>`;
+			code += `<img src = '../assets/images/${photograph.getFirstNamePhotograph}/${this.getContent}' title = 'Photo ${this.getTitre}' alt = 'alt: ${this.getTitre}' class = 'media' data-id = '${this.getId}' data-photographId = '${this.getPhotographId}' aria-label = 'Photo ${this.getTitre}. Cliquez ou appuyez sur la touche Entrée pour ouvrir le lightBox'/>`;
 		} else if (this.isVideo === true) {
 			code += `
 			<video class = 'media' data-id = '${this.getId}' data-photographId = '${this.getPhotographId}' aria-label = 'Vidéo ${this.getTitre}. Cliquez ou appuyez sur la touche Entrée pour ouvrir le lightBox'> 

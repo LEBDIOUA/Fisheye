@@ -58,8 +58,8 @@ class ListeMediasView {
 
 		newTotal.setAttribute('class', 'total');
 		newTotal.innerHTML = `
-            <h2 tabindex = '0' aria-label = 'Tous les médias ont été appréciés ${this.sommeLikes} fois'>${this.sommeLikes} <i class='fa-solid fa-heart'></i></h2>
-            <h2 tabindex = '0' aria-label = 'Le prix demandé est ${this.photograph.getPrice} par jour'>${this.photograph.getPrice}/jour</h2>
+            <p tabindex = '0' aria-label = 'Tous les médias ont été appréciés ${this.sommeLikes} fois'>${this.sommeLikes} <i class='fa-solid fa-heart'></i></p>
+            <p tabindex = '0' aria-label = 'Le prix demandé est ${this.photograph.getPrice} par jour'>${this.photograph.getPrice}/jour</p>
         `;
 
 		main.appendChild(newTotal);

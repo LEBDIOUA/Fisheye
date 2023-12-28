@@ -22,7 +22,7 @@ header {
   height: 90px;
 }
 header h1 {
-  font-size: 2.5vw; /*36px*/
+  font-size: clamp(36px, 2.5vw, 36px);
   line-height: 47px;
   text-align: left;
   color: #901C1C;
@@ -32,51 +32,53 @@ header .logo {
   width: 200px;
 }
 
-.photographer_section {
+.photographerSection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   padding-bottom: 50px;
+  width: 100%;
+  height: auto;
 }
-.photographer_section article {
+.photographerSection article {
   justify-self: center;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
 }
-.photographer_section article .articleLien {
+.photographerSection article .articleLien {
   text-decoration: none;
   cursor: pointer;
 }
-.photographer_section article .articleLien:hover .photoPhotograph, .photographer_section article .articleLien:focus .photoPhotograph {
+.photographerSection article .articleLien:hover .photoPhotograph, .photographerSection article .articleLien:focus .photoPhotograph {
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2509803922);
 }
 
 .nomPhotograph {
   color: #D3573C;
-  font-size: 1.944vw; /*28px*/
+  font-size: clamp(28px, 1.944vw, 28px);
   line-height: 47px;
   text-align: center;
 }
 
 .adrPhotograph {
   color: #901C1C;
-  font-size: 0.903vw; /*13px*/
+  font-size: clamp(13px, 0.903vw, 13px);
   text-align: center;
   line-height: 20px;
 }
 
 .slogan {
   color: black;
-  font-size: 0.85vw; /*10px*/
+  font-size: clamp(12px, 0.85vw, 12px);
   line-height: 20px;
   text-align: center;
 }
 
 .prix {
   color: #757575;
-  font-size: 0.75vw; /*9px*/
+  font-size: clamp(11px, 0.75vw, 11px);
   line-height: 20px;
   text-align: center;
 }
@@ -94,22 +96,7 @@ header .logo {
   body {
     padding: 21px 50px;
   }
-  header h1 {
-    font-size: 3.516vw;
-  }
-  .nomPhotograph {
-    font-size: 2.734vw; /*28px*/
-  }
-  .adrPhotograph {
-    font-size: 1.5vw; /*13px*/
-  }
-  .slogan {
-    font-size: 1.25vw; /*10px*/
-  }
-  .prix {
-    font-size: 1.15vw; /*9px*/
-  }
-  .photographer_section {
+  .photographerSection {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -125,41 +112,13 @@ header .logo {
   header:not(.contactModal header) h1 {
     font-size: 4.688vw;
   }
-  .nomPhotograph {
-    font-size: 3.646vw; /*28px*/
-  }
-  .adrPhotograph {
-    font-size: 1.693vw; /*13px*/
-  }
-  .slogan {
-    font-size: 1.55vw; /*10px*/
-  }
-  .prix {
-    font-size: 1.45vw; /*9px*/
-  }
-  .photographer_section {
+  .photographerSection {
     grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 500px) {
-  header h1 {
-    font-size: 7.214vw;
-  }
-  .nomPhotograph {
-    font-size: 5.611vw; /*28px*/
-  }
-  .adrPhotograph {
-    font-size: 2.605vw; /*13px*/
-  }
-  .slogan {
-    font-size: 2.4vw; /*10px*/
-  }
-  .prix {
-    font-size: 2.2vw; /*9px*/
+    gap: 30px;
   }
 }
 .triSection .listeTri, .btnContact {
-  font-size: 1.389vw; /*20px*/
+  font-size: clamp(20px, 1.389vw, 20px);
   font-weight: bold;
   color: white;
   width: 170px;
@@ -204,6 +163,7 @@ main.peuVisible {
   background-color: #FAFAFA;
   height: 300px;
   width: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
   grid-column-gap: 2%;
@@ -211,18 +171,18 @@ main.peuVisible {
   padding: 0px 50px;
 }
 .photograph-header .nomPhotograph {
-  font-size: 2.5vw; /*36px*/
+  font-size: clamp(36px, 2.5vw, 36px);
   line-height: 60px;
   text-align: left;
 }
 .photograph-header .adrPhotograph {
-  font-size: 1.667vw; /*24px*/
+  font-size: clamp(24px, 1.667vw, 24px);
   line-height: 40px;
   text-align: left;
   color: #901C1C;
 }
 .photograph-header .slogan {
-  font-size: 1.25vw; /*18px*/
+  font-size: clamp(18px, 1.25vw, 18px);
   line-height: 40px;
   text-align: left;
   color: #525252;
@@ -241,7 +201,7 @@ main.peuVisible {
   width: 100%;
 }
 .triSection .tri {
-  font-size: 1.25vw; /*18px*/
+  font-size: clamp(18px, 1.25vw, 18px);
   font-weight: 700;
   line-height: 23px;
   align-self: baseline;
@@ -311,7 +271,7 @@ main.peuVisible {
   cursor: default;
 }
 .mediaSection article div {
-  font-size: 0.833vw; /*12px*/
+  font-size: clamp(12px, 0.833vw, 12px);
   font-weight: 400;
   line-height: 31px;
   letter-spacing: 0em;
@@ -347,12 +307,12 @@ main.peuVisible {
   cursor: pointer;
 }
 .contactModal header h2, .contactModal .nomPhotographCtc {
-  font-size: 4.444vw; /*64px*/
+  font-size: clamp(64px, 4.444vw, 64px);
   font-weight: normal;
   align-self: self-start;
 }
-.contactModal p {
-  font-size: 2.083vw; /*30px*/
+.contactModal .msg {
+  font-size: clamp(30px, 2.083vw, 30px);
   padding: 30px 0px;
   line-height: 60px;
   text-align: center;
@@ -365,7 +325,7 @@ main.peuVisible {
 }
 .contactModal form label {
   color: #312E2E;
-  font-size: 2.5vw; /*36px*/
+  font-size: clamp(36px, 2.5vw, 36px);
 }
 .contactModal form div {
   display: flex;
@@ -384,10 +344,22 @@ main.peuVisible {
 .contactModal form button {
   position: relative;
   top: 23px;
-  font-size: 1.25vw; /*18px*/
+  font-size: clamp(18px, 1.25vw, 18px);
+}
+.contactModal form .msgErreur {
+  background-color: white;
+  color: red;
+  height: auto;
+  width: 100%;
+  font-size: 22px;
+  padding: 0px 10px;
 }
 .contactModal form, .contactModal form div {
   gap: 20px;
+}
+.contactModal .conteneur {
+  text-align: center;
+  margin: auto;
 }
 
 .total {
@@ -405,7 +377,7 @@ main.peuVisible {
   z-index: 1;
 }
 .total p {
-  font-size: 1.667vw; /*24px*/
+  font-size: clamp(20px, 1.5vw, 20px);
 }
 
 .lightBox {
@@ -423,18 +395,20 @@ main.peuVisible {
   grid-template-rows: 46% 46% 8%;
   grid-template-columns: 49px calc(100% - 98px) 49px;
 }
-.lightBox div.fermerLightBox {
+.lightBox div:not(.lightBoxContent) {
+  align-self: baseline;
+}
+.lightBox div:not(.lightBoxContent).fermerLightBox {
   grid-area: x;
 }
-.lightBox div.precedent {
+.lightBox div:not(.lightBoxContent).precedent {
   grid-area: p;
 }
-.lightBox div.suivant {
+.lightBox div:not(.lightBoxContent).suivant {
   grid-area: s;
 }
 .lightBox .fa-solid {
-  align-self: baseline;
-  font-size: 2.917vw; /*42px*/
+  font-size: clamp(42px, 2.917vw, 42px);
   text-align: center;
   background: #901C1C;
   -webkit-background-clip: text;
@@ -466,6 +440,10 @@ main.peuVisible {
   max-width: 100%;
   height: 100%;
 }
+.lightBox .lightBoxContent video {
+  height: auto;
+  max-height: 600px;
+}
 .lightBox .lightBoxContent .controls {
   position: absolute;
   bottom: 10px;
@@ -475,12 +453,12 @@ main.peuVisible {
   border: none;
 }
 .lightBox .lightBoxContent .controls button .fa-solid {
-  font-size: 1.5vw;
+  font-size: clamp(20px, 1.5vw, 20px);
   color: white;
 }
 .lightBox h2 {
   margin: 10px 96px 0px 96px;
-  font-size: 1.667vw; /*24px*/
+  font-size: clamp(24px, 1.667vw, 24px);
   color: #901C1C;
   grid-area: h;
 }
@@ -499,55 +477,19 @@ main.peuVisible {
   .photograph-header .photoPhotograph {
     grid-area: p;
   }
-  .photograph-header .contact_button {
+  .photograph-header .btnContact {
     grid-area: b;
     justify-self: flex-end;
-  }
-  .photograph-header .nomPhotograph {
-    font-size: 3.516vw; /*36px*/
-  }
-  .photograph-header .adrPhotograph {
-    font-size: 2.344vw; /*24px*/
-  }
-  .photograph-header .slogan {
-    font-size: 1.758vw; /*18px*/
-  }
-  .btnContact, .triSection .listeTri {
-    font-size: 1.953vw; /*20px*/
   }
   .btnContact, .triSection .listeTri li {
     height: 60px;
   }
-  .triSection .tri {
-    font-size: 1.758vw; /*18px*/
-  }
   .triSection .listeTri {
     background-color: #901C1C;
-  }
-  .mediaSection article div {
-    font-size: 1.172vw; /*12px*/
-  }
-  .contactModal h2 {
-    font-size: 4.444vw; /*64px*/
-  }
-  .contactModal form label {
-    font-size: 3.516vw; /*36px*/
-  }
-  .contactModal form button {
-    font-size: 1.758vw; /*18px*/
-  }
-  .lightBox .fa-solid {
-    font-size: 4.102vw; /*42px*/
-  }
-  .lightBox h2 {
-    font-size: 2.344vw; /*24px*/
   }
   .total {
     height: 59px;
     width: 300px;
-  }
-  .total p {
-    font-size: 2.344vw; /*24px*/
   }
 }
 @media (max-width: 767.98px) {
@@ -560,52 +502,33 @@ main.peuVisible {
     justify-self: center;
     height: auto;
   }
-  .mediaSection article div {
-    font-size: 1.563vw; /*12px*/
-  }
   .contactModal {
     width: 100%;
   }
-  .contactModal form h2 {
-    font-size: 8.333vw; /*64px*/
-  }
-  .contactModal form form label {
-    font-size: 4.688vw; /*36px*/
-  }
-  .contactModal form form button {
-    font-size: 2.344vw; /*18px*/
-  }
   .lightBox {
     padding: 20px;
-  }
-  .photograph-header .nomPhotograph {
-    font-size: 4.688vw; /*36px*/
-  }
-  .photograph-header .adrPhotograph {
-    font-size: 3.125vw; /*24px*/
-  }
-  .photograph-header .slogan {
-    font-size: 2.344vw; /*18px*/
-  }
-  .btnContact, .triSection .listeTri {
-    font-size: 2.604vw; /*20px*/
-  }
-  .triSection .tri {
-    font-size: 2.344vw; /*18px*/
-  }
-  .lightBox .fa-solid {
-    font-size: 5.469vw; /*42px*/
-  }
-  .lightBox h2 {
-    font-size: 3.125vw; /*24px*/
-  }
-  .total p {
-    font-size: 3.125vw; /*24px*/
   }
 }
 @media (max-width: 500px) {
   .mediaSection {
     grid-template-columns: 1fr;
+  }
+  .mediaSection article {
+    width: 100%;
+  }
+  .photograph-header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .photograph-header div:first-child {
+    order: 2;
+  }
+  .photograph-header .photoPhotograph {
+    order: 1;
+  }
+  .photograph-header .btnContact {
+    order: 3;
   }
 }
 

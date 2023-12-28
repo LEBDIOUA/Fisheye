@@ -111,24 +111,27 @@ class TriView {
 		}
 
 		else if (index === null) {
-			if (direction === 'up') {
-				if (this.position > 2) {
-					this.position -= 2;
-				} else {
-					this.position = liElements.length - 1;
-				}
-			}
-
-			if (direction === 'down') {
-				if (this.position < liElements.length - 1) {
-					this.position += 2;
-				} else {
-					this.position = 2;
-				}
-			}
+			this.modifierPosition(direction);
 			this.choisirTri(this.position);
 		}
-		
+	}
+
+	modifierPosition(direction) {
+		if (direction === 'up') {
+			if (this.position > 2) {
+				this.position -= 2;
+			} else {
+				this.position = liElements.length - 1;
+			}
+		}
+
+		if (direction === 'down') {
+			if (this.position < liElements.length - 1) {
+				this.position += 2;
+			} else {
+				this.position = 2;
+			}
+		}
 	}
 }
 export default TriView;

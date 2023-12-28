@@ -21,7 +21,7 @@ header{
     align-items: center;
     height: 90px;
     h1 {
-        font-size: 2.5vw; /*36px*/
+        font-size: clamp(36px, 2.5vw, 36px);
         line-height: 47px;
         text-align: left;
         color: #901C1C;
@@ -32,11 +32,13 @@ header{
     }
 }
 
-.photographer_section{
+.photographerSection{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    padding-bottom: 50px;
+    padding-bottom: 50px;    
+    width: 100%;
+    height: auto;
     article {
         justify-self: center;
         display: flex;
@@ -57,28 +59,28 @@ header{
 
 .nomPhotograph{
     color: #D3573C; 
-    font-size: 1.944vw; /*28px*/
+    font-size: clamp(28px, 1.944vw, 28px);
     line-height: 47px;
     text-align: center;
 }
 
 .adrPhotograph{
     color: #901C1C;
-    font-size: 0.903vw; /*13px*/
+    font-size: clamp(13px, 0.903vw, 13px);
     text-align: center;
     line-height: 20px;
 }
 
 .slogan {
     color: black;
-    font-size: 0.85vw; /*10px*/
+    font-size: clamp(12px, 0.85vw, 12px);
     line-height: 20px;
     text-align: center;
 }
 
 .prix {
     color: #757575;
-    font-size: 0.75vw; /*9px*/
+    font-size: clamp(11px, 0.75vw, 11px);
     line-height: 20px;
     text-align: center;
 }
@@ -96,26 +98,7 @@ header{
     body{
         padding: 21px 50px;
     }
-    header h1 {
-        font-size: 3.516vw;
-    }
-    .nomPhotograph{
-        font-size: 2.734vw; /*28px*/
-    }
-    
-    .adrPhotograph{
-        font-size: 1.5vw; /*13px*/
-    }
-    
-    .slogan {
-        font-size: 1.25vw; /*10px*/
-    }
-    
-    .prix {
-        font-size: 1.15vw; /*9px*/
-    }
-    
-    .photographer_section{
+    .photographerSection{
         grid-template-columns: 1fr 1fr;
     }
 }
@@ -132,37 +115,8 @@ header{
             font-size: 4.688vw;
         }
     }
-    .nomPhotograph{
-        font-size: 3.646vw; /*28px*/
-    }
-    .adrPhotograph{
-        font-size: 1.693vw; /*13px*/
-    }
-    .slogan {
-        font-size: 1.55vw; /*10px*/
-    }
-    .prix {
-        font-size: 1.45vw; /*9px*/
-    }
-    .photographer_section{
+    .photographerSection{
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 500px){   
-    header h1 {
-        font-size: 7.214vw;
-    }
-    .nomPhotograph{
-        font-size: 5.611vw; /*28px*/
-    }    
-    .adrPhotograph{
-        font-size: 2.605vw; /*13px*/
-    }    
-    .slogan {
-        font-size: 2.4vw; /*10px*/
-    }
-    .prix {
-        font-size: 2.2vw; /*9px*/
+        gap: 30px;
     }
 }
