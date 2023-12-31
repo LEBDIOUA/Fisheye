@@ -83,7 +83,6 @@ class ModalLightBox{
 	afficherLightBox() {
 		this.ouvrirModal();
 		this.chargerLigthBox();
-		console.log(this.position)
 		if (this.position === 0) {
 			this.changerEtatBtnPrecedent('desactiver');
 		} else if (this.position === this.listeMedias.length - 1) {

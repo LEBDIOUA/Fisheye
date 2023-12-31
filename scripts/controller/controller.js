@@ -18,7 +18,7 @@ class Controller {
 
 	async afficherPhotograph(id) {
 		const photograph = await this.model.getPhotographById(id);
-		this.listePhotographsView.headerPhotograph(photograph);
+		this.listePhotographsView.construirePhotographEntete(photograph);
 	}
 
 	async getNomPhotograph(id) {

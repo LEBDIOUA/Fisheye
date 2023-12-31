@@ -1,5 +1,5 @@
 class ListePhotographsView {
-	afficherPhotograph(photograph) {
+	construirePhotographArticle(photograph) {
 		const content = `
             <article>
                 <a class = 'articleLien' href = './pages/photographer.html?id= ${photograph.getId}' aria-label = 'Photographe ${photograph.getName} , cliquez ou appuyez sur la touche Entrée pour voir sa galerie'>
@@ -13,7 +13,7 @@ class ListePhotographsView {
 		return content;
 	}
 
-	headerPhotograph(photograph) {
+	construirePhotographEntete(photograph) {
 		const header = document.querySelector(".photograph-header");
 		const photographDetail = document.createElement("div");
 		const nomPhotograph = document.createElement("h2");
@@ -54,7 +54,7 @@ class ListePhotographsView {
 		const photographSection = document.querySelector("main");
 
 		for (let i = 0; i < listePhotographs.length; i++) {
-			photographSection.innerHTML += this.afficherPhotograph(listePhotographs[i]);
+			photographSection.innerHTML += this.construirePhotographArticle(listePhotographs[i]);
 		}
 	}
 }
