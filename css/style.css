@@ -286,7 +286,7 @@ main.peuVisible {
   display: none;
   position: fixed;
   top: 0px;
-  height: 100%;
+  height: auto;
   width: 669px;
   align-self: center;
   z-index: 1;
