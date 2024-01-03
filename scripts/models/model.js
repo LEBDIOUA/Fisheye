@@ -105,6 +105,7 @@ class Model {
 				listMedia.push(new Media(data.media[i]));
 			}
 		}
+
 		return listMedia;
 	}
 

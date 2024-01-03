@@ -20,7 +20,7 @@ class TriView {
             </ul>
         </section>`;
 		main.innerHTML += content;
-		const maListe = document.querySelector(".listeTri");
+		const maListe = document.querySelector('.listeTri');
 
 		maListe.addEventListener('click', () => {
 			this.cacherAfficherListeTri();
@@ -65,21 +65,22 @@ class TriView {
 			if (element.classList.contains('liCache') && (index > 0)) {
 				element.classList.remove('liCache');
 				element.classList.add('liNonCache');
-				element.setAttribute("tabindex", "0");
+				element.setAttribute('tabindex', '0');
 				icon.classList.remove('fa-chevron-down');
 				icon.classList.add('fa-chevron-up');
-			} else if (element.classList.contains('liNonCache')  && (index > 0)) {
+			} else if (element.classList.contains('liNonCache') && (index > 0)) {
 				element.classList.remove('liNonCache');
 				element.classList.add('liCache');
-				element.removeAttribute("tabindex");
+				element.removeAttribute('tabindex');
 				icon.classList.remove('fa-chevron-up');
 				icon.classList.add('fa-chevron-down');
 				document.querySelector('.listeTri').focus();
 			}
+
 			if (liElements[0].hasAttribute('tabindex')) {
-				liElements[0].removeAttribute("tabindex");
+				liElements[0].removeAttribute('tabindex');
 			} else {
-				liElements[0].setAttribute("tabindex", "0");
+				liElements[0].setAttribute('tabindex', '0');
 				liElements[0].focus();
 			}
 		});
@@ -90,13 +91,13 @@ class TriView {
 		const liElements = document.querySelectorAll('.listeTri li');
 		const icon = document.querySelector('.fa-solid ');
 
-		if (index !== null && index > 0 &&  index % 2 === 0) {
+		if (index !== null && index > 0 && index % 2 === 0) {
 			const tempContent = liElements[index].textContent;
 			const tempId = liElements[index].getAttribute('id');
 			const tempName = liElements[index].getAttribute('name');
 			liElements[0].removeChild(icon);
 
-			for (let i = index; i > 0; i-=2) {
+			for (let i = index; i > 0; i -= 2) {
 				if (i >= 2) {
 					liElements[i].textContent = liElements[i - 2].textContent;
 					liElements[i].setAttribute('id', liElements[i - 2].getAttribute('id'));
@@ -105,18 +106,17 @@ class TriView {
 			}
 
 			liElements[0].textContent = tempContent;
-			liElements[0].innerHTML += '<i class=\'fa-solid fa-chevron-down iconTri\'></i>'
+			liElements[0].innerHTML += '<i class=\'fa-solid fa-chevron-down iconTri\'></i>';
 			liElements[0].setAttribute('id', tempId);
 			liElements[0].setAttribute('name', tempName);
-		}
-
-		else if (index === null) {
+		} else if (index === null) {
 			this.modifierPosition(direction);
 			this.choisirTri(this.position);
 		}
 	}
 
 	modifierPosition(direction) {
+		const liElements = document.querySelectorAll('.listeTri li');
 		if (direction === 'up') {
 			if (this.position > 2) {
 				this.position -= 2;

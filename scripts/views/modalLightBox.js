@@ -1,7 +1,6 @@
-import Modal from './modal.js';
 
-class ModalLightBox{
-	static  ecouteurEscapeAjoute = false;
+class ModalLightBox {
+	static ecouteurEscapeAjoute = false;
 
 	constructor(photograph, listeMedias, position) {
 		ModalLightBox.construireLightBox();
@@ -23,7 +22,8 @@ class ModalLightBox{
 		if (modal) {
 			body.removeChild(modal);
 		}
-		//Construire lightBox
+
+		// Construire lightBox
 		const lbContent = document.createElement('div');
 		lbContent.classList = 'lightBox';
 		lbContent.innerHTML = `
@@ -42,10 +42,10 @@ class ModalLightBox{
 		const titre = this.modal.querySelector('.titre');
 		titre.textContent = this.listeMedias[this.position].getTitre;
 		titre.removeAttribute('aria-label');
-		titre.setAttribute('aria-label', 'Le titre de média. '+this.listeMedias[this.position].getTitre);
+		titre.setAttribute('aria-label', 'Le titre de média. ' + this.listeMedias[this.position].getTitre);
 		lightBoxContent.innerHTML = this.listeMedias[this.position].getMediaFactory(this.photograph);
-		if(this.listeMedias[this.position].getMediaFactory(this.photograph).includes('video')){
-			// const maVideo = lightBoxContent.querySelector('video');
+		if (this.listeMedias[this.position].getMediaFactory(this.photograph).includes('video')) {
+			// Const maVideo = lightBoxContent.querySelector('video');
 			// maVideo.setAttribute('controls', '');
 			lightBoxContent.innerHTML += `
 			<div class = 'controls'>
@@ -55,18 +55,18 @@ class ModalLightBox{
 			</div>`;
 			this.controlerVideo();
 			lightBoxContent.style.height = 'auto';
-		}
-		else {
+		} else {
 			lightBoxContent.style.height = '100%';
 		}
+
 		lightBoxContent.querySelector('.media').removeAttribute('aria-label');
-		lightBoxContent.querySelector('.media').setAttribute('aria-label', 'Média '+ this.listeMedias[this.position].getTitre);
+		lightBoxContent.querySelector('.media').setAttribute('aria-label', 'Média ' + this.listeMedias[this.position].getTitre);
 		lightBoxContent.querySelector('.media').setAttribute('data-position', this.position);
 		lightBoxContent.querySelector('.media').setAttribute('aria-hidden', 'false');
 		lightBoxContent.querySelector('.media').setAttribute('tabindex', '0');
 	}
-	
-	ouvrirModal(){
+
+	ouvrirModal() {
 		this.modal.style.display = 'grid';
 		this.body.classList.add('bodydesactive');
 		this.main.setAttribute('tabindex', '-1');
@@ -74,8 +74,7 @@ class ModalLightBox{
 
 		if (this.modal.querySelector('video')) {
 			this.modal.querySelector('.media').focus();
-		}
-		else {
+		} else {
 			this.btnPrecedent.focus();
 		}
 	}
@@ -92,17 +91,17 @@ class ModalLightBox{
 		this.ajouterEcouteurClics();
 	}
 
-	ajouterEcouteurClics(){
+	ajouterEcouteurClics() {
 		this.ecouteurClicPrecedent();
 		this.ecouteurClicSuivant();
 		this.ecouteurClicFermer();
 		this.ecouteurClicNaviguer();
 	}
 
-	controlerVideo(){
-		this.modal.querySelector(".lirePause").addEventListener('click', this.lirePauseVideo.bind(this));
-		this.modal.querySelector(".arreter").addEventListener('click', this.arreterVideo.bind(this));
-		this.modal.querySelector(".volume").addEventListener('keydown', (event) => this.volumeVideo(event));
+	controlerVideo() {
+		this.modal.querySelector('.lirePause').addEventListener('click', this.lirePauseVideo.bind(this));
+		this.modal.querySelector('.arreter').addEventListener('click', this.arreterVideo.bind(this));
+		this.modal.querySelector('.volume').addEventListener('keydown', event => this.volumeVideo(event));
 	}
 
 	ecouteurClicPrecedent() {
@@ -132,13 +131,13 @@ class ModalLightBox{
 	}
 
 	ecouteurClicFermer() {
-		this.btnFermer.addEventListener("click", () => {
+		this.btnFermer.addEventListener('click', () => {
 			this.fermerModal();
 		});
-		
+
 		addEventListener('keydown', event => {
-			if (event.key === "Escape") {
-			  this.fermerModal();
+			if (event.key === 'Escape') {
+				this.fermerModal();
 			}
 		});
 
@@ -171,8 +170,7 @@ class ModalLightBox{
 			this.btnPrecedent.querySelector('.fa-solid').classList.remove('active');
 			this.btnPrecedent.removeAttribute('aria-label');
 			this.btnPrecedent.setAttribute('aria-label', 'C\'est le premier média');
-		}
-		else if(etat === 'activer') {
+		} else if (etat === 'activer') {
 			this.btnPrecedent.querySelector('.fa-solid').classList.add('active');
 			this.btnPrecedent.querySelector('.fa-solid').classList.remove('desactive');
 			this.btnPrecedent.removeAttribute('aria-label');
@@ -186,21 +184,20 @@ class ModalLightBox{
 			this.btnSuivant.querySelector('.fa-solid').classList.remove('active');
 			this.btnSuivant.removeAttribute('aria-label');
 			this.btnSuivant.setAttribute('aria-label', 'C\'est le dernier média');
-		}
-		else if (etat === 'activer'){			
+		} else if (etat === 'activer') {
 			this.btnSuivant.querySelector('.fa-solid').classList.add('active');
 			this.btnSuivant.querySelector('.fa-solid').classList.remove('desactive');
 			this.btnSuivant.removeAttribute('aria-label');
 			this.btnSuivant.setAttribute('aria-label', 'Cliquez ou appuyez pour afficher le média suivante');
 		}
-		
 	}
 
 	mediaPrecedent() {
-		if( this.position > 0){
+		if (this.position > 0) {
 			this.position -= 1;
 			this.chargerLigthBox();
 		}
+
 		if (this.position === 0) {
 			this.changerEtatBtnPrecedent('desactiver');
 		} else if (this.position === this.listeMedias.length - 2) {
@@ -209,39 +206,23 @@ class ModalLightBox{
 	}
 
 	mediaSuivant() {
-		if( this.position < this.listeMedias.length - 1){
+		if (this.position < this.listeMedias.length - 1) {
 			this.position += 1;
 			this.chargerLigthBox();
 		}
+
 		if (this.position === 1) {
 			this.changerEtatBtnPrecedent('activer');
 		} else if (this.position === this.listeMedias.length - 1) {
-			this.changerEtatrBtnSuivant('desactiver')
+			this.changerEtatrBtnSuivant('desactiver');
 		}
-	}
-
-	ecouteurClicFermer() {
-		this.btnFermer.addEventListener("click", () => {
-			this.fermerModal();
-		});
-
-		addEventListener("keydown", event => {
-			if (event.key === 'Escape') {
-				this.fermerModal();
-			}
-		});
-
-		this.btnFermer.addEventListener('keydown', event => {
-			if (event.key === 'Enter') {
-				this.fermerModal();
-			}
-		});
 	}
 
 	fermerModal() {
 		if (this.modal.parentNode) {
 			this.modal.parentNode.removeChild(this.modal);
 		}
+
 		this.main.classList.remove('peuVisible');
 		this.main.removeAttribute('tabindex');
 		this.main.removeAttribute('aria-hidden');
@@ -251,12 +232,13 @@ class ModalLightBox{
 		if (this.modal.querySelector('.media')) {
 			position = this.modal.querySelector('.media').getAttribute('data-position');
 		}
+
 		this.main.querySelectorAll('.media')[position].focus();
 	}
 
-	lirePauseVideo(){
-		const video = this.modal.querySelector("video");
-		const btn = this.modal.querySelector(".lirePause");
+	lirePauseVideo() {
+		const video = this.modal.querySelector('video');
+		const btn = this.modal.querySelector('.lirePause');
 		if (video.paused || video.ended) {
 			video.play();
 			btn.removeAttribute('aria-label');
@@ -268,40 +250,39 @@ class ModalLightBox{
 		}
 	}
 
-	arreterVideo(){
-		const video = this.modal.querySelector("video");
+	arreterVideo() {
+		const video = this.modal.querySelector('video');
 		video.pause();
-  		video.currentTime = 0;
+		video.currentTime = 0;
 	}
 
-	volumeVideo(event){
-		const video = this.modal.querySelector("video");
-		const btn = this.modal.querySelector(".volume");
-			if (event.key === 'ArrowDown') {
-				if(video.volume > 0){
-					video.volume -= 0.25;
-				}
+	volumeVideo(event) {
+		const video = this.modal.querySelector('video');
+		const btn = this.modal.querySelector('.volume');
+		if (event.key === 'ArrowDown') {
+			if (video.volume > 0) {
+				video.volume -= 0.25;
 			}
-			else if (event.key === 'ArrowUp') {
-				if(video.volume < 1){
-					video.volume += 0.25;
-				}
+		} else if (event.key === 'ArrowUp') {
+			if (video.volume < 1) {
+				video.volume += 0.25;
 			}
-			btn.removeChild(btn.querySelector('i'));
-			btn.innerHTML = this.getEtatSonIcon(video.volume);
+		}
+
+		btn.removeChild(btn.querySelector('i'));
+		btn.innerHTML = this.getEtatSonIcon(video.volume);
 	}
 
 	getEtatSonIcon(son) {
 		let icon;
-		if(son === 0){
+		if (son === 0) {
 			icon = '<i class="fa-solid fa-volume-xmark"></i>';
-		}
-		else if(son > 0 && son < 0.75){
+		} else if (son > 0 && son < 0.75) {
 			icon = '<i class="fa-solid fa-volume-low"></i>';
-		}
-		else if(son >= 0.75){
+		} else if (son >= 0.75) {
 			icon = '<i class="fa-solid fa-volume-high"></i>';
-		}	
+		}
+
 		return icon;
 	}
 }

@@ -14,31 +14,31 @@ class ListePhotographsView {
 	}
 
 	construirePhotographEntete(photograph) {
-		const header = document.querySelector(".photograph-header");
-		const photographDetail = document.createElement("div");
-		const nomPhotograph = document.createElement("h2");
-		const photographInfo = document.createElement("div");
-		const adresse = document.createElement("h3");
-		const slogan = document.createElement("p");
-		const photo = document.createElement("img");
+		const header = document.querySelector('.photograph-header');
+		const photographDetail = document.createElement('div');
+		const nomPhotograph = document.createElement('h2');
+		const photographInfo = document.createElement('div');
+		const adresse = document.createElement('h3');
+		const slogan = document.createElement('p');
+		const photo = document.createElement('img');
 
 		nomPhotograph.textContent = photograph.getName;
 		adresse.textContent = photograph.getAdresse;
 		slogan.textContent = photograph.getTagline;
 
-		photo.setAttribute("src", "../assets/images/PhotographersIDPhotos/" + photograph.getPortrait);
-		photo.setAttribute("alt", photograph.getName);
-		photo.setAttribute("title", "Photo de " + photograph.getName);
-		photo.setAttribute("class", "photoPhotograph");
-		nomPhotograph.setAttribute("class", "nomPhotograph");
-		nomPhotograph.setAttribute("aria-label", "Le ou la photographe s'appelle " + photograph.getName);
-		nomPhotograph.setAttribute("tabindex", "0");
-		adresse.setAttribute("class", "adrPhotograph");
-		adresse.setAttribute("aria-label", "habite à " + photograph.getAdresse);
-		adresse.setAttribute("tabindex", "0");
-		slogan.setAttribute("class", "slogan");
-		slogan.setAttribute("aria-label", "Son slogan est " + photograph.getTagline);
-		slogan.setAttribute("tabindex", "0");
+		photo.setAttribute('src', '../assets/images/PhotographersIDPhotos/' + photograph.getPortrait);
+		photo.setAttribute('alt', photograph.getName);
+		photo.setAttribute('title', 'Photo de ' + photograph.getName);
+		photo.setAttribute('class', 'photoPhotograph');
+		nomPhotograph.setAttribute('class', 'nomPhotograph');
+		nomPhotograph.setAttribute('aria-label', 'Le ou la photographe s\'appelle ' + photograph.getName);
+		nomPhotograph.setAttribute('tabindex', '0');
+		adresse.setAttribute('class', 'adrPhotograph');
+		adresse.setAttribute('aria-label', 'habite à ' + photograph.getAdresse);
+		adresse.setAttribute('tabindex', '0');
+		slogan.setAttribute('class', 'slogan');
+		slogan.setAttribute('aria-label', 'Son slogan est ' + photograph.getTagline);
+		slogan.setAttribute('tabindex', '0');
 
 		photographInfo.appendChild(adresse);
 		photographInfo.appendChild(slogan);
@@ -51,7 +51,7 @@ class ListePhotographsView {
 	}
 
 	async render(listePhotographs) {
-		const photographSection = document.querySelector("main");
+		const photographSection = document.querySelector('main');
 
 		for (let i = 0; i < listePhotographs.length; i++) {
 			photographSection.innerHTML += this.construirePhotographArticle(listePhotographs[i]);

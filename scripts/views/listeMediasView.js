@@ -37,10 +37,10 @@ class ListeMediasView {
 		for (let i = 0; i < this.listeMedias.length; i++) {
 			newMediaSection.innerHTML += this.afficherMedia(i);
 		}
+
 		main.appendChild(newMediaSection);
-		
-		this.afficherTotal(main);
-		this.aimerMedia(main);
+		this.afficherTotal();
+		this.aimerMedia();
 
 		const media = main.querySelectorAll('.media');
 		for (let i = 0; i < media.length - 1; i++) {
@@ -48,7 +48,8 @@ class ListeMediasView {
 		}
 	}
 
-	afficherTotal(main) {
+	afficherTotal() {
+		const main = document.querySelector('main');
 		const total = main.querySelector('.total');
 		const newTotal = document.createElement('div');
 
@@ -66,16 +67,16 @@ class ListeMediasView {
 	}
 
 	// Aimer un media en augmentant le nombre de like à 1
-	aimerMedia(main) {
+	aimerMedia() {
 		const infoLike = document.querySelectorAll('.infoLike');
 		infoLike.forEach((Element, index) => {
 			Element.addEventListener('click', () => {
-					this.listeMedias[index].ajouterLike();
-					this.majMedia(index);
-					this.initialiserBtnLikes(index);
+				this.listeMedias[index].ajouterLike();
+				this.majMedia(index);
+				this.initialiserBtnLikes(index);
 			});
-			Element.addEventListener('keydown', (event) => {
-				if (event.key === 'Enter'){
+			Element.addEventListener('keydown', event => {
+				if (event.key === 'Enter') {
 					this.listeMedias[index].ajouterLike();
 					this.majMedia(index);
 					this.initialiserBtnLikes(index);
@@ -89,9 +90,9 @@ class ListeMediasView {
 		infoLike[position].classList.add('liked');
 	}
 
-	majMedia(position){
-		const mediaInfo = document.querySelectorAll(".mediaInfo")[position];
-		const nbLikes = mediaInfo.querySelector("p");
+	majMedia(position) {
+		const mediaInfo = document.querySelectorAll('.mediaInfo')[position];
+		const nbLikes = mediaInfo.querySelector('p');
 		const remplacerPar = `
 			<p class= 'infoLike'- tabindex = '0' 
 			aria-label = 'Ce média a été apprécié ${this.listeMedias[position].getLikes} fois. 
@@ -102,7 +103,7 @@ class ListeMediasView {
 		mediaInfo.innerHTML += remplacerPar;
 		nbLikes.innerHTML = remplacerPar;
 		this.sommeLikes++;
-		this.afficherTotal(main);
+		this.afficherTotal();
 	}
 }
 
