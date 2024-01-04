@@ -6,7 +6,7 @@ Le projet est réalisé pour l'un des plus importants sites de photographie en f
 
 L'objectif est de moderniser leur plateforme en ajoutant des fonctionnalités pour améliorer l'accessibilité. Ce projet est baptisé 'Fisheye'.
 
-![Shape1](assets/Img-Md/Vue générale.gif)
+![Shape1](./assets/Img-Md/Vue%20générale.jpg)
 
 _Figure 1 Vue générale_
 
@@ -16,7 +16,7 @@ Lorsqu'on accède au site, on atterrit sur la page d'accueil qui présente la li
 
 ## 1. Modal – Contact du photographe
 
-![Shape2](RackMultipart20240104-1-ehgics_html_7ec745db5d0a80a1.gif)
+![Shape2](./assets/Img-Md/Contacter%20un%20photographe%20-%20Modal%20-.jpg)
 
 _Figure 2 Contacter un photographe - Modal -_
 
@@ -32,7 +32,7 @@ emailFormat = /^\w+([\.-]?\w+)\*@\w+([\.-]?\w+)\*(\.\w{2,3})+$/;
 
 ## 3. Média – Modal LightBox
 
-![Shape3](RackMultipart20240104-1-ehgics_html_cb1685c4bc75e7e7.gif)
+![Shape3](./assets/Img-Md/Média%20-%20Like%20-%20LightBox.jpg)
 
 _Figure 3 Média - Like - LightBox_
 
@@ -42,7 +42,7 @@ En sélectionnant un média, un modal lightbox s'ouvre. À l'intérieur, on trou
 
 ## 4. Options Tri et Like
 
-![Shape4](RackMultipart20240104-1-ehgics_html_6190739656f7683a.gif)
+![Shape4](./assets/Img-Md/Options%20Tri%20et%20Like.jpg)
 
 _Figure 4 Options Tri et Like_
 
@@ -73,7 +73,7 @@ L'objectif était de créer un site accessible à tous, y compris aux personnes 
 
 ## IV. MVC
 
-![Shape5](RackMultipart20240104-1-ehgics_html_a6510d2ceb5b1895.gif)
+![Shape5](./assets/Img-Md/Architecture%20-%20MVC.jpg)
 
 _Figure 5 L'architecture MVC_
 
@@ -85,7 +85,7 @@ L'approche MVC contribue à une organisation plus efficace du code, à une meill
 
 ## V. La validité de mon code
 
-![Shape6](RackMultipart20240104-1-ehgics_html_784a8d53cc9554bd.gif)
+![Shape6](./assets/Img-Md/La%20validité%20du%20code.jpg)
 
 _Figure 6 La validité du code_
 
