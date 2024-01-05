@@ -6,6 +6,8 @@ Le projet est réalisé pour l'un des plus importants sites de photographie en f
 
 L'objectif est de moderniser leur plateforme en ajoutant des fonctionnalités pour améliorer l'accessibilité. Ce projet est baptisé 'Fisheye'.
 
+![Shape1](./assets/Img-Md/algorithme.jpg)
+
 ![Shape1](./assets/Img-Md/Vue%20générale.jpg)
 
 _Figure 1 Vue générale_
