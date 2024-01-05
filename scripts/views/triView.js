@@ -32,14 +32,11 @@ class TriView {
 		});
 	}
 
-	genererFonction(element) {
-		if (element === null) {
-			const liElements = document.querySelectorAll('.listeTri li');
-			element = liElements[0];
-		}
-
+	genererFonction() {
+		const liElements = document.querySelectorAll('.listeTri li');
+		const element = liElements[0].textContent.replace(/\s/g, '');
 		let fonction;
-		switch (element.textContent) {
+		switch (element) {
 			case 'Titre':
 				fonction = 'getMediasByTitle';
 				break;
@@ -87,7 +84,7 @@ class TriView {
 	}
 
 	// Changer le premier Texte de la liste
-	choisirTri(index, direction) {
+	deplacerEnHaut(index, direction) {
 		const liElements = document.querySelectorAll('.listeTri li');
 		const icon = document.querySelector('.fa-solid ');
 
@@ -111,7 +108,7 @@ class TriView {
 			liElements[0].setAttribute('name', tempName);
 		} else if (index === null) {
 			this.modifierPosition(direction);
-			this.choisirTri(this.position);
+			this.deplacerEnHaut(this.position);
 		}
 	}
 

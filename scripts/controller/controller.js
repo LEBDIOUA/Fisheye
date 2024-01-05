@@ -51,6 +51,7 @@ class Controller {
 
 	async afficherListeMedias(photographId, filtre) {
 		let medias;
+
 		if (typeof this.model[filtre] === 'function') {
 			medias = await this.model[filtre](photographId);
 		} else {
@@ -75,13 +76,13 @@ class Controller {
 				event.preventDefault();
 			});
 			liElements[i].addEventListener('click', () => {
-				listeTri.choisirTri(i);
-				this.afficherListeMedias(id, listeTri.genererFonction(liElements[0]));
+				listeTri.deplacerEnHaut(i);
+				this.afficherListeMedias(id, listeTri.genererFonction());
 			});
 			liElements[i].addEventListener('keydown', event => {
 				if (event.key === 'Enter') {
-					listeTri.choisirTri(i);
-					this.afficherListeMedias(id, listeTri.genererFonction(liElements[0]));
+					listeTri.deplacerEnHaut(i);
+					this.afficherListeMedias(id, listeTri.genererFonction());
 					maListe.focus();
 				}
 			});

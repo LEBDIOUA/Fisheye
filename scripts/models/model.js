@@ -111,7 +111,7 @@ class Model {
 
 	async getMediasByTitle(photographId) {
 		const data = await this.getMedias(photographId);
-		let temp;
+		/* Let temp;
 		let trouv;
 		do {
 			trouv = false;
@@ -123,8 +123,9 @@ class Model {
 					trouv = true;
 				}
 			}
-		} while (trouv === true);
+		} while (trouv === true); */
 
+		data.sort((a, b) => a.getTitre.localeCompare(b.getTitre));
 		return data;
 	}
 
@@ -164,6 +165,9 @@ class Model {
 			}
 		} while (trouv === true);
 
+		// Data.sort(function (a, b) {
+		// 	return b.getLikes - a.getLikes;
+		// });
 		return data;
 	}
 }
