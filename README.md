@@ -12,13 +12,17 @@ _Figure 1 Vue générale_
 
 Lorsqu'on accède au site, on atterrit sur la page d'accueil qui présente la liste des photographes avec leurs images, noms, localisations, slogans et tarifs par jour. En cliquant sur un photographe (son image ou son nom), on est dirigé vers la page dédiée au photographe. Cette page affiche un en-tête avec les informations du photographe ainsi qu'une galerie de ses travaux et d'autres fonctionnalités. Les détails de ces fonctionnalités seront explicités dans les châpitres suivantes.
 
+![Shape1](./assets/Img-Md/algorithme.jpg)
+
+_Figure 2 Algorithme_
+
 ## II. Page de photographe
 
 ## 1. Modal – Contact du photographe
 
 ![Shape2](./assets/Img-Md/Contacter%20un%20photographe%20-%20Modal%20-.jpg)
 
-_Figure 2 Contacter un photographe - Modal -_
+_Figure 3 Contacter un photographe - Modal -_
 
 Dans la page du photographe, on trouve un bouton « Contactez-moi » positionné dans l'en-tête, permettant à l'utilisateur de contacter le photographe. Lorsqu'on clique sur ce bouton, un formulaire s'affiche, demandant à l'utilisateur de saisir ses informations pour envoyer son message au photographe. Cependant, si ces informations ne sont pas valides, un message d'erreur s'affichera sous chaque champ contenant une erreur.
 
@@ -34,7 +38,7 @@ emailFormat = /^\w+([\.-]?\w+)\*@\w+([\.-]?\w+)\*(\.\w{2,3})+$/;
 
 ![Shape3](./assets/Img-Md/Média%20-%20Like%20-%20LightBox.jpg)
 
-_Figure 3 Média - Like - LightBox_
+_Figure 4 Média - Like - LightBox_
 
 Dans la page du photographe, se trouve une galerie présentant ses travaux sous forme de médias. Chaque média peut être une image ou une vidéo, chacun d'eux possédant un titre et un compteur de likes. En cliquant sur le bouton de like, le nombre de likes sera incrémenté.
 
@@ -44,7 +48,7 @@ En sélectionnant un média, un modal lightbox s'ouvre. À l'intérieur, on trou
 
 ![Shape4](./assets/Img-Md/Options%20Tri%20et%20Like.jpg)
 
-_Figure 4 Options Tri et Like_
+_Figure 5 Options Tri et Like_
 
 Parmi les fonctionnalités disponibles sur la plateforme, il y a l'option de tri permettant de classer les médias par popularité, par date ou par titre.
 
@@ -75,7 +79,7 @@ L'objectif était de créer un site accessible à tous, y compris aux personnes 
 
 ![Shape5](./assets/Img-Md/Architecture%20-%20MVC.jpg)
 
-_Figure 5 L'architecture MVC_
+_Figure 6 L'architecture MVC_
 
 Je fais usage de l'architecture MVC dans mon code.
 
@@ -87,6 +91,6 @@ L'approche MVC contribue à une organisation plus efficace du code, à une meill
 
 ![Shape6](./assets/Img-Md/La%20validité%20du%20code.jpg)
 
-_Figure 6 La validité du code_
+_Figure 7 La validité du code_
 
 Pour assurer la qualité et la validité de mon code, j'ai impliqué plusieurs outils de détection d'erreurs : la librairie _ **ESLINT** _, l'outil d'audit d'accessibilité web _ **ACHECKER** _ et _ **ZOOM** _. J'ai également utilisé le lecteur d'écran, _ **SCREEN READER** _, pour garantir l'accessibilité du site aux utilisateurs malvoyants.
